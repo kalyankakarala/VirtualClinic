@@ -10,6 +10,10 @@ import { UserloginComponent } from './userlogin/userlogin.component';
 import { PatientComponent } from './patient/patient.component';
 import { AddPatientComponent } from './patient/add-patient/add-patient.component';
 import { EditPatientComponent } from './patient/edit-patient/edit-patient.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ConsultationComponent } from './consultation/consultation.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { EditPatientComponent } from './patient/edit-patient/edit-patient.compon
     UserloginComponent,
     PatientComponent,
     AddPatientComponent,
-    EditPatientComponent
+    EditPatientComponent,
+    NavbarComponent,
+    ConsultationComponent,
+    DoctorComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
