@@ -1,0 +1,53 @@
+
+  body {
+    background: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+  .nav-list-item{
+    margin-left: 90%;
+    
+  }
+  .bg-dark{
+      background-color: #400040;
+  }
+  .topColor{
+      background-color: #400040;
+  }
+.topbar{
+    height: 126px; 
+    background-repeat: none;
+    background-size: cover;
+    background-image: url('../../assets/images/topbar_ver1.jpg' ) ;
+  }
+
+  .topNavbar{
+    background-color: #400040; 
+     
+  }
+ 
+
+  #collapsibleNavbar > ul> li> a{
+      color: blanchedalmond;
+  }
+  button{
+      color: black;
+  }
+  .navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    color: #fff;
+    background-color: black;
+    
+}
+.alignItems{
+  margin: 0 auto;
+}
+@media only screen and (max-width: 600px) {
+    .navbar-collapse collapse show {
+    margin-right: 7%;
+    }
+  }

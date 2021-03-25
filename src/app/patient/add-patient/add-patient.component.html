@@ -1,1 +1,95 @@
-<p>add-patient works!</p>
+<div id="content" class="main-content">
+    <form [formGroup]="registerForm" (submit)="uploadSubmit($event)">
+        <mat-card> 
+        <div class="alignItems">
+     <h3 style="text-align: center;">Create Patient Profile</h3>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+            <div class="w100p" fxFlex="30%">
+         <mat-label>FirstName:</mat-label>
+            <mat-form-field appearance="outline">
+                <input type="text" matInput placeholder="FirstName" name="FirstName" formControlName="FirstName">
+                <mat-error *ngIf="data.FirstName.errors?.required">FirstName is required</mat-error>
+              </mat-form-field>
+              </div>
+              <div class="w100p" fxFlex="30%">
+                  <mat-label>LastName:</mat-label>
+              <mat-form-field appearance="outline">
+                <input type="text" matInput placeholder="LastName" name="LastName" formControlName="LastName">
+                <mat-error *ngIf="data.LastName.errors?.required">LastName is required</mat-error>
+              </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+               
+                <div class="w100p" fxFlex="30%">
+             
+                    <mat-form-field style="width: 90%;"> 
+                        <input matInput [matDatepicker]="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth"
+                      placeholder="DOB"  [required]="true">
+                        <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                        <mat-datepicker #dateOfBirth></mat-datepicker>
+                        <mat-error *ngIf="data.dateOfBirth.errors?.required">Date Of Birth is required</mat-error>
+                
+                      </mat-form-field>
+                    </div>
+                    
+                      <div class="w100p" fxFlex="30%">
+                     <h3>Gender:</h3>
+                    <span>   <mat-radio-group formControlName="options">
+                    <mat-radio-button checked value="male">male</mat-radio-button>&nbsp;
+                    <mat-radio-button  value="female">female</mat-radio-button>
+                  </mat-radio-group></span>
+                  </div>
+                
+                </div>
+                  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                <div class="w100p" fxFlex="30%">
+             <mat-label>Mobile:</mat-label>
+                <mat-form-field appearance="outline">
+                    <input type="text" matInput placeholder="Mobile" name="Mobile" formControlName="Mobile">
+                    <mat-error *ngIf="data.Mobile.errors?.required">Mobile is required</mat-error>
+                  </mat-form-field>
+                  </div>
+                  <div class="w100p" fxFlex="30%">
+                      <mat-label>Email:</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input type="text" matInput placeholder="Email" name="Email" formControlName="Email">
+                    <mat-error *ngIf="data.Email.errors?.required">Email is required</mat-error>
+                  </mat-form-field>
+                  </div>
+                </div>
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+               
+                    <div class="w100p" fxFlex="60%">
+                 <mat-label>Address:</mat-label>
+                        <mat-form-field appearance="outline">
+                            <textarea matInput 
+                               placeholder="Address" 
+                             name="Address" formControlName="Address"
+                             >
+                            </textarea>
+                            <mat-error *ngIf="data.Address.errors?.required">Address is required</mat-error>
+                          </mat-form-field> 
+                    
+                    </div>
+            </div>
+    
+          
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                <div class="w100p" fxFlex="60%" fxLayoutAlign="center center">
+                    <button mat-raised-button type="submit" color="primary">submit</button>
+              &nbsp;
+              <button mat-raised-button color="primary" >cancel</button>
+                    </div>
+               
+        </div>
+        </div>
+      
+        </mat-card>
+       
+    </form>
+    </div>
+    
+     
+    
+        
