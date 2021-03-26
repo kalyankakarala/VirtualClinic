@@ -9,30 +9,67 @@ import { Router } from '@angular/router';
 })
 export class AddPatientComponent implements OnInit {
   registerForm: FormGroup
+  message=""
   selectedStatus: Array<string>;
+  GenderDetails =["male", "female"]
   constructor(private formBuilder: FormBuilder, private router: Router) { 
 this.selectedStatus=[]
     this.registerForm = this.formBuilder.group({
-      FirstName: ['', Validators.required],
-      LastName: ['', Validators.required],
-      dateOfBirth:['', Validators.required],
-      options: new FormControl('male'),
-      Email: ['', Validators.required],
-      Mobile:['', Validators.required],
-      Address: ['', Validators.required]
-
+      firstName: new FormControl('',[ Validators.required]),
+      lastName: new FormControl('',[ Validators.required]),
+      dateOfBirth:new FormControl('',[ Validators.required]),
+      gender: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required, Validators.email]),
+      mobile:new FormControl('', [Validators.minLength(10)]),
+    
+      country: new FormControl('',[Validators.required]),
+      state: new FormControl('',[Validators.required]),
+      address: new FormControl('',[Validators.required]),
+      reason:new FormControl('',[Validators.required])
     });
   }
-  get data() { return this.registerForm.controls; }
+  get data() {   
+    return this.registerForm.controls; }
   ngOnInit(): void {
   }
 
+  selectGender(e: any){
+    if(e.source._checked){
+      this.message=""
+    
+  }
+}
   uploadSubmit(event: any){
-console.log(this.registerForm.value)
-this.registerForm.value
+    console.log(event);
+    if(this.registerForm.value.gender==""){
+      this.message="select gender"
+    }
+    if(this.registerForm.invalid){
+      return;
+    }
+let data=this.registerForm.value;
+let obj={
+  "FirstName":data.firstName || '',
+  "LastName":data.lastName || '',
+  "dateOfBirth": data.dateOfBirth || '',
+  "Gender":data.gender || '',
+  "Email": data.email || '',
+  "Mobile":data.mobile || '',
+  "country": data.country || '',
+  "state": data.state || "",
+ "Address": data.address || "",
+  "reason":data.reason || ""
+}
+console.log({'obj':obj});
+
 
   }
   selectionlists(date: any){
 
   }
+
+  resetData(){
+    this.registerForm.reset()
+  }
 }
+

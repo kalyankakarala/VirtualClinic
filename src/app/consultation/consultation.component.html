@@ -1,1 +1,55 @@
-<p>consultation works!</p>
+<div id="content" class="main-content">
+    <form [formGroup]="consultationForm" (submit)="ConsultDataSubmit($event)">
+        <mat-card> 
+        <div class="alignItems">
+     <h3 style="text-align: center;">Request for Consultation</h3>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+            <div class="w100p" fxFlex="50%">
+         <mat-label>Title:</mat-label>
+            <mat-form-field appearance="outline">
+                <input type="text" matInput placeholder="Title" name="title" formControlName="title">
+                <mat-error *ngIf="consultdata.title.errors?.required">title is required</mat-error>
+              </mat-form-field>
+              </div>
+            
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                <div class="w100p" fxFlex="50%">
+                    <mat-label>Description:</mat-label>
+                    <mat-form-field appearance="outline">
+                        <textarea matInput 
+                           placeholder="Description" 
+                         name="description" formControlName="description"
+                         >
+                        </textarea>
+                        <mat-error *ngIf="consultdata.description.errors?.required">description is required</mat-error>
+                      </mat-form-field> 
+                  </div>
+                
+                </div>
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                    <div class="w100p" fxFlex="50%">
+                     
+                            <h6>Case:</h6>
+                            <mat-radio-group class="example-radio-group" name="caseDetails" formControlName="caseDetails" (change)="selectCase($event)" required>
+                                <mat-radio-button class="example-radio-button" *ngFor="let season of consultCase" [value]="season">
+                                  {{season}}
+                                </mat-radio-button>
+ <mat-error style="font-size:75%;" *ngIf="message">{{message}}</mat-error>
+                              </mat-radio-group>&nbsp;
+
+                      </div>    
+                    
+                    </div>
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                        <div class="w100p" fxFlex="60%" fxLayoutAlign="center center">
+                            <button mat-raised-button type="submit" color="primary">submit</button>
+                      &nbsp;
+                      <button mat-raised-button color="primary" (click)="cancelData()" >cancel</button>
+                            </div>
+                       
+                </div>
+            </div>
+            </mat-card>
+            </form>
+            </div>

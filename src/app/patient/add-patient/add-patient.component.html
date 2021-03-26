@@ -7,15 +7,15 @@
             <div class="w100p" fxFlex="30%">
          <mat-label>FirstName:</mat-label>
             <mat-form-field appearance="outline">
-                <input type="text" matInput placeholder="FirstName" name="FirstName" formControlName="FirstName">
-                <mat-error *ngIf="data.FirstName.errors?.required">FirstName is required</mat-error>
+                <input type="text" matInput placeholder="FirstName" name="firstName" formControlName="firstName">
+                <mat-error *ngIf="data.firstName.errors?.required">FirstName is required</mat-error>
               </mat-form-field>
               </div>
               <div class="w100p" fxFlex="30%">
                   <mat-label>LastName:</mat-label>
               <mat-form-field appearance="outline">
-                <input type="text" matInput placeholder="LastName" name="LastName" formControlName="LastName">
-                <mat-error *ngIf="data.LastName.errors?.required">LastName is required</mat-error>
+                <input type="text" matInput placeholder="LastName" name="lastName" formControlName="lastName">
+                <mat-error *ngIf="data.lastName.errors?.required">LastName is required</mat-error>
               </mat-form-field>
               </div>
             </div>
@@ -34,11 +34,13 @@
                     </div>
                     
                       <div class="w100p" fxFlex="30%">
-                     <h3>Gender:</h3>
-                    <span>   <mat-radio-group formControlName="options">
-                    <mat-radio-button checked value="male">male</mat-radio-button>&nbsp;
-                    <mat-radio-button  value="female">female</mat-radio-button>
-                  </mat-radio-group></span>
+                        <h6>Gender:</h6>
+                        <mat-radio-group class="example-radio-group" name="gender" formControlName="gender" (change)="selectGender($event)" required>
+                            <mat-radio-button class="example-radio-button" *ngFor="let genders of GenderDetails" [value]="genders">
+                              {{genders}}
+                            </mat-radio-button>
+<mat-error style="font-size:75%;" *ngIf="message">{{message}}</mat-error>
+                          </mat-radio-group>&nbsp;
                   </div>
                 
                 </div>
@@ -46,40 +48,73 @@
                 <div class="w100p" fxFlex="30%">
              <mat-label>Mobile:</mat-label>
                 <mat-form-field appearance="outline">
-                    <input type="text" matInput placeholder="Mobile" name="Mobile" formControlName="Mobile">
-                    <mat-error *ngIf="data.Mobile.errors?.required">Mobile is required</mat-error>
+                    <input type="text" matInput placeholder="Mobile" name="mobile" formControlName="mobile">
+                    <mat-error *ngIf="data.mobile.errors?.required">Mobile is required</mat-error>
                   </mat-form-field>
                   </div>
                   <div class="w100p" fxFlex="30%">
                       <mat-label>Email:</mat-label>
                   <mat-form-field appearance="outline">
-                    <input type="text" matInput placeholder="Email" name="Email" formControlName="Email">
-                    <mat-error *ngIf="data.Email.errors?.required">Email is required</mat-error>
+                    <input type="text" matInput placeholder="Enter Email" name="email" formControlName="email">
+                    <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error>
                   </mat-form-field>
                   </div>
                 </div>
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                  <div class="w100p" fxFlex="30%">
+               <mat-label>State:</mat-label>
+                  <mat-form-field appearance="outline">
+                      <input type="text" matInput placeholder="Enter State" name="state" formControlName="state">
+                      <mat-error *ngIf="data.state.errors?.required">state is required</mat-error>
+                    </mat-form-field>
+                    </div>
+                    <div class="w100p" fxFlex="30%">
+                        <mat-label>Country:</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input type="text" matInput placeholder="country" name="country" formControlName="country">
+                      <mat-error *ngIf="data.country.errors?.required">country is required</mat-error>
+                    </mat-form-field>
+                    </div>
+                  </div>
                 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
                
                     <div class="w100p" fxFlex="60%">
                  <mat-label>Address:</mat-label>
                         <mat-form-field appearance="outline">
-                            <textarea matInput 
+                            <textarea matInput rows="2" cols="40"
                                placeholder="Address" 
-                             name="Address" formControlName="Address"
+                             name="address" formControlName="address"
                              >
                             </textarea>
-                            <mat-error *ngIf="data.Address.errors?.required">Address is required</mat-error>
+                            <mat-error *ngIf="data.address.errors?.required">Address is required</mat-error>
                           </mat-form-field> 
                     
                     </div>
             </div>
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+               
+              <div class="w100p" fxFlex="60%">
+           <mat-label>Reasons:</mat-label>
+                  <mat-form-field appearance="outline">
+                      <textarea matInput rows="10" cols="40"
+                         placeholder="Mention Reasons" 
+                       name="reason" formControlName="reason"
+                       >
+                      </textarea>
+                      <mat-hint align="end">Mention Reasons if any disease</mat-hint>
+                      <mat-error *ngIf="data.reason.errors?.required">reason is required</mat-error>
+                    </mat-form-field> 
+              
+              </div>
+      </div>
     
           
             <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
                 <div class="w100p" fxFlex="60%" fxLayoutAlign="center center">
                     <button mat-raised-button type="submit" color="primary">submit</button>
               &nbsp;
-              <button mat-raised-button color="primary" >cancel</button>
+              <button mat-raised-button color="primary" (click)="resetData()" >cancel</button>
                     </div>
                
         </div>
