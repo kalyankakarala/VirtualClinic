@@ -52,6 +52,7 @@ export class ConsultationComponent implements OnInit {
   }
   cancelData(){
     this.consultationForm.reset()
+    this.message="please check any one case"
   }
 
 }

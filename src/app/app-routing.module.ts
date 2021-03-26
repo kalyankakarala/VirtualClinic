@@ -7,20 +7,15 @@ import { AddPatientComponent } from './patient/add-patient/add-patient.component
 import { UserloginComponent } from './userlogin/userlogin.component';
 
 const routes: Routes = [
-  // {path:'', component:MainpageComponent},
   {path: '', component: UserloginComponent},
-
   {path: 'login', component: UserloginComponent},
   {path: 'requestConsult', component: ConsultationComponent},
-
   {path:'patient', component:AddPatientComponent,
-children: [
-  {path: 'addpatient', component: AddPatientComponent, pathMatch:'full'},
-]
+        children: [
+           {path: 'addpatient', component: AddPatientComponent, pathMatch:'full'},
+            ]
 },
 {path: '**', redirectTo: 'login', pathMatch: 'full'},
-
-// {path: '**', component: AppComponent}
 ];
 
 @NgModule({

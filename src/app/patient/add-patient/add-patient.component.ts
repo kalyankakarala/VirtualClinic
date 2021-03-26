@@ -20,8 +20,7 @@ this.selectedStatus=[]
       dateOfBirth:new FormControl('',[ Validators.required]),
       gender: new FormControl('',[Validators.required]),
       email: new FormControl('',[Validators.required, Validators.email]),
-      mobile:new FormControl('', [Validators.minLength(10)]),
-    
+      mobile:new FormControl('', [Validators.required,Validators.pattern(/^[0-9]{10}$/)]),  
       country: new FormControl('',[Validators.required]),
       state: new FormControl('',[Validators.required]),
       address: new FormControl('',[Validators.required]),
@@ -40,24 +39,23 @@ this.selectedStatus=[]
   }
 }
   uploadSubmit(event: any){
-    console.log(event);
     if(this.registerForm.value.gender==""){
-      this.message="select gender"
+      this.message="please select gender"
     }
     if(this.registerForm.invalid){
       return;
     }
 let data=this.registerForm.value;
 let obj={
-  "FirstName":data.firstName || '',
-  "LastName":data.lastName || '',
+  "firstName":data.firstName || '',
+  "lastName":data.lastName || '',
   "dateOfBirth": data.dateOfBirth || '',
-  "Gender":data.gender || '',
-  "Email": data.email || '',
-  "Mobile":data.mobile || '',
+  "gender":data.gender || '',
+  "email": data.email || '',
+  "mobile":data.mobile || '',
   "country": data.country || '',
   "state": data.state || "",
- "Address": data.address || "",
+ "address": data.address || "",
   "reason":data.reason || ""
 }
 console.log({'obj':obj});
@@ -70,6 +68,7 @@ console.log({'obj':obj});
 
   resetData(){
     this.registerForm.reset()
+    this.message="please select gender"
   }
 }
 
