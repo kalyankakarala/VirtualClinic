@@ -2,20 +2,20 @@
     <form [formGroup]="registerForm" (submit)="uploadSubmit($event)">
         <mat-card> 
         <div class="alignItems">
-     <h3 style="text-align: center;">Create Patient Profile</h3>
+     <h3 style="text-align: center;">Register Patient Profile</h3>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
             <div class="w100p" fxFlex="30%">
-         <mat-label>FirstName:</mat-label>
+         <mat-label>First Name:</mat-label>
             <mat-form-field appearance="outline">
                 <input type="text" matInput placeholder="FirstName" name="firstName" formControlName="firstName">
-                <mat-error *ngIf="data.firstName.errors?.required">FirstName is required</mat-error>
+                <mat-error *ngIf="data.firstName.errors?.required">First Name is required</mat-error>
               </mat-form-field>
               </div>
               <div class="w100p" fxFlex="30%">
-                  <mat-label>LastName:</mat-label>
+                  <mat-label>Last Name:</mat-label>
               <mat-form-field appearance="outline">
                 <input type="text" matInput placeholder="LastName" name="lastName" formControlName="lastName">
-                <mat-error *ngIf="data.lastName.errors?.required">LastName is required</mat-error>
+                <mat-error *ngIf="data.lastName.errors?.required">Last Name is required</mat-error>
               </mat-form-field>
               </div>
             </div>
@@ -95,10 +95,10 @@
             <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
                
               <div class="w100p" fxFlex="60%">
-           <mat-label>Reasons:</mat-label>
+           <mat-label>Medical History:</mat-label>
                   <mat-form-field appearance="outline">
                       <textarea matInput rows="10" cols="40"
-                         placeholder="Mention Reasons" 
+                         placeholder="Mention Medical History" 
                        name="reason" formControlName="reason"
                        >
                       </textarea>
