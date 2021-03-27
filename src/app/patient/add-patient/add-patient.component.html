@@ -7,14 +7,14 @@
             <div class="w100p" fxFlex="30%">
          <mat-label>First Name:</mat-label>
             <mat-form-field appearance="outline">
-                <input type="text" matInput placeholder="FirstName" name="firstName" formControlName="firstName">
+                <input type="text" matInput placeholder="FirstName" name="firstName" formControlName="firstName" [required]="true">
                 <mat-error *ngIf="data.firstName.errors?.required">First Name is required</mat-error>
               </mat-form-field>
               </div>
               <div class="w100p" fxFlex="30%">
                   <mat-label>Last Name:</mat-label>
               <mat-form-field appearance="outline">
-                <input type="text" matInput placeholder="LastName" name="lastName" formControlName="lastName">
+                <input type="text" matInput placeholder="LastName" name="lastName" formControlName="lastName" [required]="true">
                 <mat-error *ngIf="data.lastName.errors?.required">Last Name is required</mat-error>
               </mat-form-field>
               </div>
@@ -35,7 +35,7 @@
                     
                       <div class="w100p" fxFlex="30%">
                         <h6>Gender:</h6>
-                        <mat-radio-group class="example-radio-group" name="gender" formControlName="gender" (change)="selectGender($event)" required>
+                        <mat-radio-group class="example-radio-group" name="gender" formControlName="gender" (change)="selectGender($event)" [required]="true">
                             <mat-radio-button class="example-radio-button" *ngFor="let genders of GenderDetails" [value]="genders">
                               {{genders}}
                             </mat-radio-button>
@@ -48,14 +48,14 @@
                 <div class="w100p" fxFlex="30%">
              <mat-label>Mobile:</mat-label>
                 <mat-form-field appearance="outline">
-                    <input type="text" matInput placeholder="Mobile" name="mobile" formControlName="mobile">
+                    <input type="text" matInput placeholder="Mobile" name="mobile" formControlName="mobile" [required]="true">
                     <mat-error *ngIf="data.mobile.errors?.required">Mobile is required</mat-error>
                   </mat-form-field>
                   </div>
                   <div class="w100p" fxFlex="30%">
                       <mat-label>Email:</mat-label>
                   <mat-form-field appearance="outline">
-                    <input type="text" matInput placeholder="Enter Email" name="email" formControlName="email">
+                    <input type="text" matInput placeholder="Email" name="email" formControlName="email" [required]="true">
                     <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error>
                   </mat-form-field>
                   </div>
@@ -64,14 +64,14 @@
                   <div class="w100p" fxFlex="30%">
                <mat-label>State:</mat-label>
                   <mat-form-field appearance="outline">
-                      <input type="text" matInput placeholder="Enter State" name="state" formControlName="state">
+                      <input type="text" matInput placeholder="State" name="state" formControlName="state" [required]="true">
                       <mat-error *ngIf="data.state.errors?.required">state is required</mat-error>
                     </mat-form-field>
                     </div>
                     <div class="w100p" fxFlex="30%">
                         <mat-label>Country:</mat-label>
                     <mat-form-field appearance="outline">
-                      <input type="text" matInput placeholder="country" name="country" formControlName="country">
+                      <input type="text" matInput placeholder="Country" name="country" formControlName="country" [required]="true">
                       <mat-error *ngIf="data.country.errors?.required">country is required</mat-error>
                     </mat-form-field>
                     </div>
@@ -83,7 +83,7 @@
                         <mat-form-field appearance="outline">
                             <textarea matInput rows="2" cols="40"
                                placeholder="Address" 
-                             name="address" formControlName="address"
+                             name="address" formControlName="address" [required]="true"
                              >
                             </textarea>
                             <mat-error *ngIf="data.address.errors?.required">Address is required</mat-error>
@@ -102,8 +102,8 @@
                        name="reason" formControlName="reason"
                        >
                       </textarea>
-                      <mat-hint align="end">Mention Reasons if any disease</mat-hint>
-                      <mat-error *ngIf="data.reason.errors?.required">reason is required</mat-error>
+                      <mat-hint align="end">Mention Medical History</mat-hint>
+                      <mat-error *ngIf="data.reason.errors?.required">Medical History is required</mat-error>
                     </mat-form-field> 
               
               </div>

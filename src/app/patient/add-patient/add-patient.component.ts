@@ -20,7 +20,7 @@ this.selectedStatus=[]
       dateOfBirth:new FormControl('',[ Validators.required]),
       gender: new FormControl('',[Validators.required]),
       email: new FormControl('',[Validators.required, Validators.email]),
-      mobile:new FormControl('', [Validators.required,Validators.pattern(/^[0-9]{10}$/)]),  
+      mobile:new FormControl('', [Validators.required]),  
       country: new FormControl('',[Validators.required]),
       state: new FormControl('',[Validators.required]),
       address: new FormControl('',[Validators.required]),
@@ -56,9 +56,9 @@ let obj={
   "country": data.country || '',
   "state": data.state || "",
  "address": data.address || "",
-  "reason":data.reason || ""
+  "reason":data.reason || "none"
 }
-console.log({'obj':obj});
+console.log(obj);
 
 
   }

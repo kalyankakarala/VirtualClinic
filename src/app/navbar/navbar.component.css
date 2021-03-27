@@ -25,7 +25,9 @@
     background-color: #400040; 
      
   }
- 
+  #collapsibleNavbar > ul> li> a:hover{
+    color: orange;
+  }
 
   #collapsibleNavbar > ul> li> a{
       color: blanchedalmond;

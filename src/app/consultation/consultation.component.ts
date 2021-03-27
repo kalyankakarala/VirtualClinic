@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class ConsultationComponent implements OnInit {
   consultationForm: FormGroup;
 
-  consultCase: string[] = ["emergency", "normal"];
+  consultCase: string[] = ["EMERGENCY", "NORMAL"];
   message= "";
   constructor(private formBuilder: FormBuilder, private router: Router) {
 
@@ -47,7 +47,7 @@ export class ConsultationComponent implements OnInit {
     "description": data.description || "",
     "caseDetails":data.caseDetails || ""
   }
-  console.log({"obj":obj});
+  console.log(obj);
   
   }
   cancelData(){

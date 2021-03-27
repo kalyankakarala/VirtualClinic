@@ -12,7 +12,7 @@ export class UserloginComponent implements OnInit {
   submitted = false;
   constructor(private formBuilder: FormBuilder, private router: Router) { 
     this.loginForm = this.formBuilder.group({
-      username: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     });
 
@@ -32,7 +32,7 @@ onSubmit() {
       "username": data.username || '',
     "password": data.password || ''
     }  
-    console.log({'obj':obj});
+    console.log(obj);
     
     this.submitted = true;      
   }
