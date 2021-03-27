@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AddConsultationComponent } from './consultation/add-consultation/add-consultation.component';
+import { EditConsultationComponent } from './consultation/edit-consultation/edit-consultation.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     NavbarComponent,
     ConsultationComponent,
     DoctorComponent,
-    CalendarComponent
+    CalendarComponent,
+    AddConsultationComponent,
+    EditConsultationComponent
   ],
   imports: [
     BrowserModule,
