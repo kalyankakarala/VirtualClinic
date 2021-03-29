@@ -48,15 +48,20 @@
                 <div class="w100p" fxFlex="30%">
              <mat-label>Mobile:</mat-label>
                 <mat-form-field appearance="outline">
-                    <input type="text" matInput placeholder="Mobile" name="mobile" formControlName="mobile" [required]="true">
+                    <input type="text" matInput placeholder="Mobile" name="mobile" formControlName="mobile" [required]="true" type="number"
+                    pattern="[0-9]*"  onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     <mat-error *ngIf="data.mobile.errors?.required">Mobile is required</mat-error>
+                    <mat-error *ngIf="data.mobile.touched && data.mobile.invalid && data.mobile.errors?.pattern">Email pattern should be like xyz@abc.com</mat-error>
+
+                    
                   </mat-form-field>
                   </div>
                   <div class="w100p" fxFlex="30%">
                       <mat-label>Email:</mat-label>
                   <mat-form-field appearance="outline">
-                    <input type="text" matInput placeholder="Email" name="email" formControlName="email" [required]="true">
+                    <input type="text" matInput placeholder="Email" name="email" formControlName="email" [required]="true"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                     <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error>
+                    <mat-error *ngIf="data.email.errors?.pattern">Email pattern should be like xyz@abc.com</mat-error>
                   </mat-form-field>
                   </div>
                 </div>
