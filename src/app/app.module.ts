@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddConsultationComponent } from './consultation/add-consultation/add-consultation.component';
 import { EditConsultationComponent } from './consultation/edit-consultation/edit-consultation.component';
+import { VerifyOtpComponent } from './popups/verify-otp/verify-otp.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EditConsultationComponent } from './consultation/edit-consultation/edit
     DoctorComponent,
     CalendarComponent,
     AddConsultationComponent,
-    EditConsultationComponent
+    EditConsultationComponent,
+    VerifyOtpComponent
   ],
   imports: [
     BrowserModule,
