@@ -1,1 +1,25 @@
-<p>verify-otp works!</p>
+<div class="content-dialog">
+    <h5 class="text-center">Please Enter Otp</h5>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+        <div class="w100p" fxFlex="60%">
+        <mat-form-field appearance="outline">
+            <textarea matInput rows="2" cols="100"
+               placeholder="Address" 
+             name="address"  [required]="true"
+             >
+            </textarea>
+      
+          </mat-form-field>  
+</div>
+</div>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+    <div class="w100p" fxFlex="60%" fxLayoutAlign="center center">
+        <button mat-raised-button color="primary" (click)="dialogRef.close(true)">Confirm</button>
+  &nbsp;
+  <button mat-raised-button color="primary" (click)="dialogRef.close(false)">cancel</button>
+        </div>
+   
+</div>
+</div>
+

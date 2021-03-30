@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-verify-otp',
   templateUrl: './verify-otp.component.html',
@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerifyOtpComponent implements OnInit {
 
-  constructor() { }
+  constructor( public dialogRef: MatDialogRef<VerifyOtpComponent>) { 
+    dialogRef.disableClose = true;
+  }
 
   ngOnInit(): void {
   }
