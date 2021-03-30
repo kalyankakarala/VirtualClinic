@@ -1,23 +1,22 @@
 <div class="content-dialog">
-    <h5 class="text-center">Please Enter Otp</h5>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
-        <div class="w100p" fxFlex="60%">
-        <mat-form-field appearance="outline">
-            <textarea matInput rows="2" cols="100"
-               placeholder="Address" 
-             name="address"  [required]="true"
-             >
-            </textarea>
-      
-          </mat-form-field>  
+    <h5 class="text-center">Verify OTP</h5>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="start center">
+        <div class="w100p" fxFlex="20%">
+            <h4>OTP</h4>
+        </div>
+        <div class="w100p" fxFlex="50%">
+            <mat-form-field appearance="outline">
+                <input type="text" matInput placeholder="Enter OTP" name="otp" formControlName="otp" [required]="true">
+            
+              </mat-form-field>
 </div>
 </div>
 
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
     <div class="w100p" fxFlex="60%" fxLayoutAlign="center center">
-        <button mat-raised-button color="primary" (click)="dialogRef.close(true)">Confirm</button>
+        <button mat-raised-button color="primary" (click)="dialogRef.close(true)">Submit</button>
   &nbsp;
-  <button mat-raised-button color="primary" (click)="dialogRef.close(false)">cancel</button>
+  <button mat-raised-button color="primary" (click)="dialogRef.close(false)">Cancel</button>
         </div>
    
 </div>

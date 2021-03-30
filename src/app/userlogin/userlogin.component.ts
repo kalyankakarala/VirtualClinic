@@ -43,11 +43,13 @@ onSubmit() {
       data: obj
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.submitted = true;  
+      this.router.navigate(['patient/addpatient']);
 
     });
-    this.submitted = true;      
+     
   }
   
-  this.router.navigate(['patient/addpatient']);
+
 }
 }
