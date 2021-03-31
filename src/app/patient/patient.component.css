@@ -15,6 +15,20 @@ table {
   /* .active mat-tab {
       color: red;
   } */
-.mat-tab-label-active{
-    color:red
+
+
+.mat-tab-label {
+  min-width: 25px !important;
+  padding: 5px;
+  color: blue;
+  font-weight: 700;
 }
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  min-width: 25px !important;
+  padding: 25px;
+  color: red;
+  font-weight: 700;
+}
+
