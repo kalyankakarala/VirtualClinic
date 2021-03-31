@@ -63,6 +63,10 @@
 mat-nav-list a{
   color: silver;
 }
+
+mat-icon {
+  color: silver;
+}
 @media only screen and (max-width: 600px) {
     .navbar-collapse collapse show {
     margin-right: 7%;

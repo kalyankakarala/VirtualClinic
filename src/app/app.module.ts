@@ -42,6 +42,7 @@ import { VerifyOtpComponent } from './popups/verify-otp/verify-otp.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, 
     AppRoutingModule,
     MaterialModule,
     FormsModule,
