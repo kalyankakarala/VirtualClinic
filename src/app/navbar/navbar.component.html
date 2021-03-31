@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm " style="   background-color: #400040; border: 1px solid black;
+<!-- <nav class="navbar navbar-expand-sm " style="   background-color: #400040; border: 1px solid black;
 ;">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -21,6 +21,48 @@
     
     </ul>
   </div>  
-  </nav>
+  </nav> -->
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav style="background-color: #400040; color: silver; border: 1px solid silver;">
+      <mat-nav-list>
+        <!-- <a 
+           mat-list-item  
+           [routerLink]="login" 
+           (click)="sidenav.toggle()"> login</a> -->
+           <a class="nav-link" routerLink="/consultation/add"  (click)="sidenav.toggle()">Consultation</a>
+           <a 
+           mat-list-item  
+           routerLink="/login"
+           (click)="sidenav.toggle()"> login</a>
+           <a 
+           mat-list-item  
+           routerLink="patient/add" 
+           (click)="sidenav.toggle()">Register</a>
+           <a 
+           mat-list-item  
+           routerLink="/login"
+           (click)="sidenav.toggle()"> logout</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+          <mat-toolbar style="background-color: #400040; color: silver; border: 1px solid silver;">
+            <button  mat-icon-button 
+                     aria-label="Menu"
+                     (click)="sidenav.open()">
+            <mat-icon>menu</mat-icon>
+          </button>  
+    </mat-toolbar>
+      <router-outlet></router-outlet>
+      </div>
+
+    
+    
+    </mat-sidenav-content>
+    <div class="footer" #footer>
+      Your sticky footer with a variable height.
+    </div>
+  </mat-sidenav-container>
 
   

@@ -1,10 +1,14 @@
 
 
 .topbar{
-    height: 126px; 
+    height: 80px; 
+    line-height: 80px;
     background-repeat: none;
     background-size: cover;
-    background-image: url('../../assets/images/topbar_ver1.jpg' ) ;
+    color: silver;
+background-color: #400040;
   }
-
+.alignHeight{
+  line-height: 80px;
+}
  

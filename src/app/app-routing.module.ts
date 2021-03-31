@@ -11,7 +11,7 @@ import { PatientComponent } from './patient/patient.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 
 const routes: Routes = [
-  {path: '', component: UserloginComponent},
+  {path: '', component: MainpageComponent},
   {path: 'login', component: UserloginComponent},
   {
     path: 'patient', 
