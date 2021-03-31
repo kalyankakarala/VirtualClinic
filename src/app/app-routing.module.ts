@@ -11,11 +11,17 @@ import { UserloginComponent } from './userlogin/userlogin.component';
 const routes: Routes = [
   {path: '', component: UserloginComponent},
   {path: 'login', component: UserloginComponent},
-  {path: 'patient', component:PatientComponent},
+  // {path: 'patient', component:PatientComponent},
   {path: 'requestConsult', component: AddConsultationComponent},
-  {path:'patient', component:AddPatientComponent,
-        children: [
-           {path: 'addpatient', component: AddPatientComponent, pathMatch:'full'},
+  {
+    path: 'patient',
+   
+    children: [
+      {
+        path: 'addpatient',
+        component: AddPatientComponent
+      },
+      { path: '', component: PatientComponent, pathMatch: 'full'}
             ]
 },
 {path: '**', redirectTo: 'login', pathMatch: 'full'},
