@@ -63,6 +63,9 @@
 mat-nav-list a{
   color: silver;
 }
+mat-nav-list a:hover{
+  color: orange;
+}
 
 mat-icon {
   color: silver;
