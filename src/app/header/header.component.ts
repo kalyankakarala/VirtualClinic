@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  routerChangeButton: boolean=false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  routerChange(check:string){
+    if(check=='login'){
+    this.router.navigate(['/login'])
+    setTimeout(()=>{  this.routerChangeButton= true   }, 500)
+
+    }
+    else{
+      this.router.navigate([''])
+      setTimeout(()=>{  this.routerChangeButton= false   }, 500)
+     
+    }
+  }
 }
