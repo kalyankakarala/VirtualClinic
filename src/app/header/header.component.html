@@ -1,38 +1,74 @@
 
-<div class="row">
-    <div class="container-fluid">
-        <div class="row justify-content-between topbar">
-            <div class="col-5 text-center">
-              <h4 class="alignHeight">Dr. P. V. Naresh Kumar's Virtual Clinic</h4>
-            </div>
-            <div class="col-2">
-              <mat-toolbar>
-              <span class="fill-remaining-space">
-              <i class="fa fa-user" style="color: silver;" aria-hidden="true" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()"></i>
-
-              <mat-menu #menu="matMenu" [overlapTrigger]="false">
-                <span (mouseleave)="menuTrigger.closeMenu()">
-                  <button mat-menu-item style="border: none;">
-                   
-                    <span>Edit Profile</span>
-                  </button>
-    
-                    <button  mat-menu-item style="border: none;" *ngIf="!routerChangeButton" (click)="routerChange('login')">
-                  
-                      <span>Login</span>
-                    </button>
-                    <button mat-menu-item style="border: none;" *ngIf="routerChangeButton" (click)="routerChange('logout')">
-                  
-                      <span>Logout</span>
-                    </button>
-                </span>
-                </mat-menu>
-                </span>
-       
-            </mat-toolbar>
-            <i class="fa fa-bell" style="padding-left: 10%;" ></i>
-            </div>
-          </div>
-        </div>
-        
+<mat-toolbar class="fixed-header">
+  <div class="row">
+    <div class="col-sm-5">
+      
+        <i class="material-icons app-toolbar-menu" (click)="sidenav.toggle()">menu</i>
+   
     </div>
+    <div class="col-sm-5">
+      <h4 style="line-height: 80px;">Dr. PV Naresh Kumar</h4>
+    </div>
+    <div class="col-sm-2">
+    
+        <mat-toolbar>
+        <span class="fill-remaining-space">
+        <i class="fa fa-user" style="color: silver;" aria-hidden="true" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()"></i>
+
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+          <span (mouseleave)="menuTrigger.closeMenu()">
+            <button mat-menu-item style="border: none;">
+             
+              <span>Edit Profile</span>
+            </button>
+
+              <button  mat-menu-item style="border: none;" *ngIf="!routerChangeButton" (click)="routerChange('login')">
+            
+                <span>Login</span>
+              </button>
+              <button mat-menu-item style="border: none;" *ngIf="routerChangeButton" (click)="routerChange('logout')">
+            
+                <span>Logout</span>
+              </button>
+          </span>
+          </mat-menu>
+          </span>
+ 
+      </mat-toolbar>
+      <i class="fa fa-bell" style="padding-left: 10%;" ></i>
+
+    </div>
+  </div>
+ 
+  
+</mat-toolbar>
+
+<mat-sidenav-container>
+
+<mat-sidenav #sidenav style="background-color: #400040; border: 1px solid silver;" #start class="app-sidebar side-nav-style" mode="side" >
+  <mat-nav-list >
+    <a class="nav-link" routerLink="/consultation/add" (click)="sidenav.toggle()">Consultation</a>
+    <a 
+    mat-list-item  
+    routerLink="/patient" (click)="sidenav.toggle()"
+   >Patient Dashboard</a>
+    <a 
+    mat-list-item  
+    routerLink="patient/add" (click)="sidenav.toggle()"
+  >Patient Register</a>
+    
+</mat-nav-list>
+</mat-sidenav>
+<mat-sidenav-content>
+<div style="margin-top: 100px;" > 
+
+  <router-outlet></router-outlet>
+  </div>
+  <div class="footer text-center">
+    footer
+  </div>
+
+</mat-sidenav-content>
+
+
+</mat-sidenav-container>

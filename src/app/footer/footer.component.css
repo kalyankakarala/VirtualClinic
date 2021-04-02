@@ -3,5 +3,6 @@
     height: 50px; 
     background-color: #400040; 
     color: white;
+    border: 1px solid silver;
     line-height: 50px
 }

@@ -20,3 +20,55 @@ mat-toolbar{
    background-color: initial; 
    color: initial;
 }
+
+
+/* navbar */
+
+
+.fixed-header {
+  height: 80px; 
+  line-height: 80px;
+  top: 0;
+  position: fixed;
+  z-index:999;
+  background-repeat: none;
+  background-size: cover;
+  color: silver;
+background-color: #400040;
+border: 1px solid silver;
+
+}
+
+.text { 
+  width: 5px;
+}
+
+.side-nav-style{
+  background-color: grey;
+  width: 11em;
+  margin-top: 80px;
+  position: fixed
+}
+
+mat-sidenav{
+background-color: #400040;
+}
+
+mat-nav-list a{
+  color: silver;
+}
+
+mat-nav-list a:hover{
+  color: orange;
+}
+.footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  line-height: 50px;
+  background-color: #400040;
+  color: silver;
+  border: 1px solid silver;
+}
+
