@@ -45,6 +45,7 @@ onSubmit() {
       "username": data.username || '',
     "password": data.password || ''
     }
+    console.log(obj);
     this.authService.login(obj).subscribe(
       data => {
         console.log(data);
