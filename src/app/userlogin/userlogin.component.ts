@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { VerifyOtpComponent } from '../popups/verify-otp/verify-otp.component';
 import { AuthService } from '../services/auth-service';
 import { TokenStorageService } from '../services/token-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-userlogin',
@@ -17,9 +18,9 @@ export class UserloginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
+  role: string = '';
   dialogRef: MatDialogRef<VerifyOtpComponent> | undefined;
-  constructor(private formBuilder: FormBuilder, private router: Router,public _dialog: MatDialog, private authService: AuthService, private tokenStorage: TokenStorageService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router,public _dialog: MatDialog, private authService: AuthService, private tokenStorage: TokenStorageService, private toastr: ToastrService) { 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -29,7 +30,7 @@ export class UserloginComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+      this.role = this.tokenStorage.getUser().roles[0];
     }
 }
 
@@ -54,13 +55,16 @@ onSubmit() {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
+        this.role = this.tokenStorage.getUser().roles[0];
+        //this.toastr.success("Login Successfull !");
         this.getOtp(obj);
+        console.log(this.role);
         //this.reloadPage();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        this.toastr.error("Login Failed !");
       }
     );  
     //this.getOtp(obj);
@@ -83,5 +87,15 @@ onSubmit() {
       this.router.navigate(['patient/addpatient']);
 
     });
+    this.authService.getOTP().subscribe(
+      data => {
+        console.log(data);
+        //this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+      }
+    );
+    
   }
 }
