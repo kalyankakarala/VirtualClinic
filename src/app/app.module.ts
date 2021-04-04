@@ -24,6 +24,7 @@ import { AddConsultationComponent } from './consultation/add-consultation/add-co
 import { EditConsultationComponent } from './consultation/edit-consultation/edit-consultation.component';
 import { VerifyOtpComponent } from './popups/verify-otp/verify-otp.component';
 import { SignupComponent } from './popups/signup/signup.component';
+import { ResetPasswordComponent } from './popups/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SignupComponent } from './popups/signup/signup.component';
     AddConsultationComponent,
     EditConsultationComponent,
     VerifyOtpComponent,
-    SignupComponent
+    SignupComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
