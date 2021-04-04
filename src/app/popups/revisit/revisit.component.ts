@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-revisit',
+  templateUrl: './revisit.component.html',
+  styleUrls: ['./revisit.component.css']
 })
 export class RevisitComponent implements OnInit {
 
