@@ -23,6 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddConsultationComponent } from './consultation/add-consultation/add-consultation.component';
 import { EditConsultationComponent } from './consultation/edit-consultation/edit-consultation.component';
 import { VerifyOtpComponent } from './popups/verify-otp/verify-otp.component';
+import { SignupComponent } from './popups/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { VerifyOtpComponent } from './popups/verify-otp/verify-otp.component';
     CalendarComponent,
     AddConsultationComponent,
     EditConsultationComponent,
-    VerifyOtpComponent
+    VerifyOtpComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
