@@ -23,7 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddConsultationComponent } from './consultation/add-consultation/add-consultation.component';
 import { EditConsultationComponent } from './consultation/edit-consultation/edit-consultation.component';
 import { VerifyOtpComponent } from './popups/verify-otp/verify-otp.component';
-import { SignupComponent } from './popups/signup/signup.component';
+import { RevisitComponent } from './popups/revisit/revisit.component';
 import { ResetPasswordComponent } from './popups/reset-password/reset-password.component';
 
 @NgModule({
@@ -43,7 +43,7 @@ import { ResetPasswordComponent } from './popups/reset-password/reset-password.c
     AddConsultationComponent,
     EditConsultationComponent,
     VerifyOtpComponent,
-    SignupComponent,
+    RevisitComponent,
     ResetPasswordComponent
   ],
   imports: [
