@@ -20,7 +20,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-export class AuthService {
+export class APIService {
   
   constructor(private http: HttpClient) { }
 

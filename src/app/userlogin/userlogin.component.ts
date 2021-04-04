@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { VerifyOtpComponent } from '../popups/verify-otp/verify-otp.component';
-import { AuthService } from '../services/auth-service';
+import { APIService } from '../services/api-service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,7 +20,7 @@ export class UserloginComponent implements OnInit {
   errorMessage = '';
   role: string = '';
   dialogRef: MatDialogRef<VerifyOtpComponent> | undefined;
-  constructor(private formBuilder: FormBuilder, private router: Router,public _dialog: MatDialog, private authService: AuthService, private tokenStorage: TokenStorageService, private toastr: ToastrService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router,public _dialog: MatDialog, private apiService: APIService, private tokenStorage: TokenStorageService, private toastr: ToastrService) { 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -47,7 +47,7 @@ onSubmit() {
     "password": data.password || ''
     }
     console.log(obj);
-    this.authService.login(obj).subscribe(
+    this.apiService.login(obj).subscribe(
       data => {
         console.log(data);
         this.tokenStorage.saveToken(data.token);
@@ -87,7 +87,7 @@ onSubmit() {
       this.router.navigate(['patient/addpatient']);
 
     });
-    this.authService.getOTP().subscribe(
+    this.apiService.getOTP().subscribe(
       data => {
         console.log(data);
         //this.reloadPage();
