@@ -50,16 +50,18 @@ onSubmit() {
     this.apiService.login(obj).subscribe(
       data => {
         console.log(data);
-        this.tokenStorage.saveToken(data.token);
+        var tk = data.token;
+        tk = tk.replace(/^Bearer\s/, '');
+        console.log(tk)
+        this.tokenStorage.saveToken(tk);
         this.tokenStorage.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser().roles[0];
         //this.toastr.success("Login Successfull !");
-        this.getOtp(obj);
         console.log(this.role);
-        //this.reloadPage();
+        
       },
       err => {
         this.errorMessage = err.error.message;
@@ -67,24 +69,29 @@ onSubmit() {
         this.toastr.error("Login Failed !");
       }
     );  
-    //this.getOtp(obj);
      
   }
-  
+  this.getOtp();
+  //this.reloadPage();
+    
 
 }
 
-  private getOtp(obj: { username: any; password: any; }) {
-    console.log(obj);
+reloadPage(): void {
+  this.router.navigate(['consultation/add']);
+  window.location.reload();
+}
+
+getOtp() {
+    //console.log(obj);
     const dialogRef = this._dialog.open(VerifyOtpComponent, {
       width: '500px',
       disableClose: false,
-      autoFocus: true,
-      data: obj
+      autoFocus: true
     });
     dialogRef.afterClosed().subscribe(result => {
       this.submitted = true;
-      this.router.navigate(['patient/addpatient']);
+      this.router.navigate(['consultation/add']);
 
     });
     this.apiService.getOTP().subscribe(

@@ -49,7 +49,7 @@ export class APIService {
   }
 
   validateOTP(otpnum:any):Observable<any> {
-    return this.http.post(VALIDATE_OTP_API +"?otpnum="+otpnum , httpOptions);
+    return this.http.get(VALIDATE_OTP_API +"?otpnum="+otpnum , httpOptions);
   }
 
   requestConsultation(payload:any): Observable<any> {
@@ -61,7 +61,7 @@ export class APIService {
   }
 
   getConsultation(cID:any):Observable<any> {
-    return this.http.post(GET_CONSULT +"{"+cID+"}" , httpOptions);
+    return this.http.get(GET_CONSULT +"{"+cID+"}" , httpOptions);
   }
 
   getAllConsultations():Observable<any> {
@@ -77,7 +77,7 @@ export class APIService {
   }
 
   getPatient(pID:any):Observable<any> {
-    return this.http.post(GET_PATIENT +"{"+pID+"}" , httpOptions);
+    return this.http.get(GET_PATIENT +"{"+pID+"}" , httpOptions);
   }
 
   getAllPatients():Observable<any> {

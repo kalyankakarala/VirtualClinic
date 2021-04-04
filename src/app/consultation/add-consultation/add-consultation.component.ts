@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { APIService } from '../../services/api-service';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-add-consultation',
@@ -9,11 +11,13 @@ import { Router } from '@angular/router';
 })
 export class AddConsultationComponent implements OnInit {
 
+  errorMessage = '';
+  role: string = '';
+  isLoggedIn = false;
   consultationForm: FormGroup;
-
   consultCase: string[] = ["EMERGENCY", "NORMAL"];
   message= "";
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: APIService, private tokenStorage: TokenStorageService) {
 
     this.consultationForm = this.formBuilder.group({
   title: new FormControl('', [Validators.required]),
@@ -27,6 +31,10 @@ export class AddConsultationComponent implements OnInit {
     return this.consultationForm.controls; }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.role = this.tokenStorage.getUser().roles[0];
+    }
   }
 
   selectCase(e: any){
@@ -36,7 +44,7 @@ export class AddConsultationComponent implements OnInit {
   }
   ConsultDataSubmit(e: any){
     if(this.consultationForm.value.caseDetails==""){
-      this.message="please check any one case"
+      this.message="Please select either one. "
     }
     if (this.consultationForm.invalid) {
       return
@@ -46,14 +54,23 @@ export class AddConsultationComponent implements OnInit {
   let obj={
     "title":data.title || "",
     "description": data.description || "",
-    "caseDetails":data.caseDetails || ""
+    "caseType":data.caseDetails || ""
   }
   console.log(obj);
+
+  this.apiService.requestConsultation(obj).subscribe(
+    data => {
+      console.log(data);
+      //this.reloadPage();
+    },
+    err => {
+      this.errorMessage = err.error.message;
+    }
+  );
   
   }
   cancelData(){
-    this.consultationForm.reset()
-    this.message="please check any one case"
+    this.consultationForm.reset();
   }
 
 }

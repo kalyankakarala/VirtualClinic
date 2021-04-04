@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,7 @@ import { VerifyOtpComponent } from './popups/verify-otp/verify-otp.component';
 import { RevisitComponent } from './popups/revisit/revisit.component';
 import { ResetPasswordComponent } from './popups/reset-password/reset-password.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { authInterceptorProviders } from './helper/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     ToastrModule.forRoot(),
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
