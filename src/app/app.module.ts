@@ -25,6 +25,7 @@ import { EditConsultationComponent } from './consultation/edit-consultation/edit
 import { VerifyOtpComponent } from './popups/verify-otp/verify-otp.component';
 import { RevisitComponent } from './popups/revisit/revisit.component';
 import { ResetPasswordComponent } from './popups/reset-password/reset-password.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ResetPasswordComponent } from './popups/reset-password/reset-password.c
     EditConsultationComponent,
     VerifyOtpComponent,
     RevisitComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
