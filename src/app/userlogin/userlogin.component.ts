@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { VerifyOtpComponent } from '../popups/verify-otp/verify-otp.component';
 import { APIService } from '../services/api-service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
+import { ResetPasswordComponent } from '../popups/reset-password/reset-password.component';
 
 @Component({
   selector: 'app-userlogin',
@@ -20,7 +21,8 @@ export class UserloginComponent implements OnInit {
   errorMessage = '';
   role: string = '';
   dialogRef: MatDialogRef<VerifyOtpComponent> | undefined;
-  constructor(private formBuilder: FormBuilder, private router: Router,public _dialog: MatDialog, private apiService: APIService, private tokenStorage: TokenStorageService, private toastr: ToastrService) { 
+  otpData: any;
+  constructor( private formBuilder: FormBuilder, private router: Router,public _dialog: MatDialog, private apiService: APIService, private tokenStorage: TokenStorageService, private toastr: ToastrService) { 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -72,6 +74,7 @@ onSubmit() {
      
   }
   this.getOtp();
+
   //this.reloadPage();
     
 
@@ -83,26 +86,44 @@ reloadPage(): void {
 }
 
 getOtp() {
-    //console.log(obj);
-    const dialogRef = this._dialog.open(VerifyOtpComponent, {
+  this.apiService.getOTP().subscribe(
+    data => {
+     this.otpData= data;
+     const dialogRef = this._dialog.open(VerifyOtpComponent, {
       width: '500px',
       disableClose: false,
-      autoFocus: true
+      autoFocus: true,
+      data: this.otpData || ''
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: any) => {
       this.submitted = true;
       this.router.navigate(['consultation/add']);
+        //this.reloadPage();
 
     });
-    this.apiService.getOTP().subscribe(
-      data => {
-        console.log(data);
-        //this.reloadPage();
-      },
-      err => {
-        this.errorMessage = err.error.message;
-      }
-    );
     
+    },
+    err => {
+      this.errorMessage = err.error.message;
+    }
+  );
+    
+
+    
+  }
+
+  openForgotDialog(){
+    const dialogRef = this._dialog.open(ResetPasswordComponent, {
+      width: '800px',
+      disableClose: false,
+      autoFocus: true,
+      data: this.otpData || ''
+    });
+    // dialogRef.afterClosed().subscribe((result: any) => {
+    //   this.submitted = true;
+    //   this.router.navigate(['consultation/add']);
+    //     //this.reloadPage();
+
+    // });
   }
 }

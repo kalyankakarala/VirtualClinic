@@ -17,25 +17,26 @@
 
         <mat-menu #menu="matMenu" [overlapTrigger]="false">
           <span (mouseleave)="menuTrigger.closeMenu()">
-            <button mat-menu-item style="border: none;">
+            <button mat-menu-item style="border: none;" routerLink="/patient/add">
              
-              <span>Edit Profile</span>
+              <span >Sign Up</span>
             </button>
 
-              <button  mat-menu-item style="border: none;" *ngIf="!routerChangeButton" (click)="routerChange('login')">
-            
-                <span>Login</span>
-              </button>
-              <button mat-menu-item style="border: none;" *ngIf="routerChangeButton" (click)="routerChange('logout')">
+             
+            <button mat-menu-item style="border: none;" routerLink="/login">
+                <span style="text-align: center" >Login</span>
+                </button>
+           
+              <!-- <button mat-menu-item style="border: none;" *ngIf="routerChangeButton" (click)="routerChange('logout')">
             
                 <span>Logout</span>
-              </button>
+              </button> -->
           </span>
           </mat-menu>
           </span>
  
       </mat-toolbar>
-      <i class="fa fa-bell" style="padding-left: 10%;" ></i>
+      <i class="fa fa-bell" *ngIf="isLoggedIn" style="padding-left: 10%;" ></i>
 
     </div>
   </div>

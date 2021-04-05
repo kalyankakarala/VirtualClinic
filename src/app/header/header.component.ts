@@ -8,22 +8,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   routerChangeButton: boolean=false;
-
+  isLoggedIn: boolean = false
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  routerChange(check:string){
-    if(check=='login'){
-    this.router.navigate(['/login'])
-    setTimeout(()=>{  this.routerChangeButton= true   }, 500)
 
-    }
-    else{
-      this.router.navigate([''])
-      setTimeout(()=>{  this.routerChangeButton= false   }, 500)
-     
-    }
   }
-}
+

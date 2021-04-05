@@ -1,9 +1,9 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Injectable, Inject } from '@angular/core';
+// import { MatDialogRef } from '@angular/material/dialog';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { APIService } from '../../services/api-service';
 import { Router } from '@angular/router';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-verify-otp',
@@ -19,7 +19,7 @@ export class VerifyOtpComponent implements OnInit {
   role: string = '';
   isLoggedIn = false;
   otpForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<VerifyOtpComponent>, private apiService: APIService, private router: Router) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<VerifyOtpComponent>, private apiService: APIService, private router: Router, ) { 
     dialogRef.disableClose = true;
     this.otpForm = this.formBuilder.group({
       otp: new FormControl('', [Validators.required])
@@ -27,6 +27,7 @@ export class VerifyOtpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.data)
   }
 
   onSubmit() {

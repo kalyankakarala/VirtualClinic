@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { APIService } from '../services/api-service';
 
 export interface PeriodicElement {
  patientId: number,
@@ -13,11 +14,6 @@ export interface PeriodicElement {
   encapsulation: ViewEncapsulation.None
 })
 
-
-
-
-
-
 export class PatientComponent implements OnInit {
 
   tabs=['Requested','Active','Complete']
@@ -30,8 +26,10 @@ export class PatientComponent implements OnInit {
 
   ];
   dataSource: any[]=[]
-  columnsToDisplay = ['patientId', 'patientName', 'caseSummary','requestDate', 'Actions'];
-  constructor(){
+  columnsToDisplay = ['patientId', 'firstName', 'lastName','dateOfBirth', 'gender','email','mobile','country', 'state', 'address','reason'];
+  errorMessage ='';
+  patienData: any[]=[];
+  constructor(private apiservice: APIService){
     this.dataSource= this.ELEMENT_DATA   
   }
   ngOnInit(){}
@@ -39,5 +37,16 @@ export class PatientComponent implements OnInit {
   onselectChange(tab: any){
 console.log(tab);
 
+  }
+
+  getAllPatients(){
+    this.apiservice.getAllPatients().subscribe(res=>{
+     this.patienData= res
+      
+    },
+    err => {
+      this.errorMessage = err.error.message;
+    }
+    )
   }
 }
