@@ -41,7 +41,11 @@ border: 1px solid silver;
 ul{
   padding : 2px 26px 2px 26px;
 }
+ul > li {
+  list-style-type: none;
+}
 ul > li > a{
+  text-decoration: none;
   color: blue;
 }
 ul > li > a:hover{
