@@ -1,4 +1,4 @@
-<p>edit-patient works!</p>
+
 <div id="content" class="main-content">
     <form [formGroup]="registerForm" (submit)="uploadSubmit($event)">
         <mat-card> 
@@ -61,9 +61,9 @@
                       <mat-label>Emergency Contact:</mat-label>
                   <mat-form-field appearance="outline">
                     <input type="text" matInput placeholder="emergency contact number" name="emergencyContact" formControlName="emergencyContact">
-                 
+                    <mat-hint align="end">(optional)</mat-hint>
                   </mat-form-field>
-                  <mat-hint>optional</mat-hint>
+              
                   </div>
                 </div>
                 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
