@@ -7,6 +7,7 @@ import { APIService } from '../services/api-service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { ResetPasswordComponent } from '../popups/reset-password/reset-password.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-userlogin',
@@ -22,7 +23,8 @@ export class UserloginComponent implements OnInit {
   role: string = '';
   dialogRef: MatDialogRef<VerifyOtpComponent> | undefined;
   otpData: any;
-  constructor( private formBuilder: FormBuilder, private router: Router,public _dialog: MatDialog, private apiService: APIService, private tokenStorage: TokenStorageService, private toastr: ToastrService) { 
+  
+  constructor( private formBuilder: FormBuilder, private router: Router, public snackBar: MatSnackBar,public _dialog: MatDialog, private apiService: APIService, private tokenStorage: TokenStorageService, private toastr: ToastrService) { 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -30,6 +32,7 @@ export class UserloginComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.role = this.tokenStorage.getUser().roles[0];
@@ -49,6 +52,7 @@ onSubmit() {
     "password": data.password || ''
     }
     console.log(obj);
+   
     this.apiService.login(obj).subscribe(
       data => {
         console.log(data);
@@ -62,13 +66,18 @@ onSubmit() {
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser().roles[0];
         //this.toastr.success("Login Successfull !");
+        this.snackBar.open("succesfully loggedin", "close", {
+          duration: 2000,
+        });
         console.log(this.role);
         
       },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
-        this.toastr.error("Login Failed !");
+        this.snackBar.open("login Failed.....!", "close", {
+          duration: 2000,
+        });
       }
     );  
      

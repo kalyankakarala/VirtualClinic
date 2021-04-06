@@ -13,29 +13,15 @@
     
         <mat-toolbar>
         <span class="fill-remaining-space">
-        <i class="fa fa-user" style="color: silver;" aria-hidden="true" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()"></i>
+        <i class="fa fa-user" style="color: silver;" aria-hidden="true" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (click)="menuTrigger.openMenu()"></i>
 
         <mat-menu #menu="matMenu" [overlapTrigger]="false" (mouseleave)="menuTrigger.closeMenu()">
           <span >
-            <ul style="padding: 2px 26px 2px 26px;">
-              <li style="list-style-type: none;">  <a  style="text-decoration: none;"
-                mat-list-item  
-                routerLink="/patient/add" 
-               >Sign Up</a></li>
+            <ul>
+              <li>  <a  mat-list-item   routerLink="/patient/add"  >Sign Up</a></li>
                <hr>
-              <li style="list-style-type: none; text-decoration: none;"><a style="text-decoration: none;"
-                mat-list-item  
-                routerLink="/login" 
-              >Login</a></li>
+              <li ><a routerLink="/login"  >Login</a></li>
             </ul>
-          
-  
-    
-    
-              <!-- <button mat-menu-item style="border: none;" *ngIf="routerChangeButton" (click)="routerChange('logout')">
-            
-                <span>Logout</span>
-              </button> -->
           </span>
           </mat-menu>
           </span>
