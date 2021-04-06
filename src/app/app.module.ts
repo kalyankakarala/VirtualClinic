@@ -27,6 +27,7 @@ import { RevisitComponent } from './popups/revisit/revisit.component';
 import { ResetPasswordComponent } from './popups/reset-password/reset-password.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { authInterceptorProviders } from './helper/auth.interceptor';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,11 @@ import { authInterceptorProviders } from './helper/auth.interceptor';
     ToastrModule.forRoot(),
     FlexLayoutModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,
+    {provide:MatDialogRef , useValue:{} },
+
+    { provide: MAT_DIALOG_DATA, useValue: {} }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

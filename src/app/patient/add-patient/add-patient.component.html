@@ -17,11 +17,13 @@
             <mat-form-field class="full-width">
               <input type="password" matInput placeholder="confirmpassword" formControlName="confirmpassword" [required]="true">
               <mat-error *ngIf="data.confirmpassword.errors?.required">confirmpassword is required</mat-error>
+             
+              <mat-error *ngIf="data.confirmpassword.errors?.notEquivalent">password should not match</mat-error>
               <!-- <span *ngIf="confirmMessage">confirmpassword is required</span> -->
 
             </mat-form-field>
             <div class="form-group mt-4 text-center">
-              <button mat-raised-button color="primary" type="submit">Register</button>&nbsp;  <button mat-raised-button color="primary">Cancel</button>
+              <button mat-raised-button color="primary" type="submit">Register</button>&nbsp;  <button mat-raised-button color="primary" (cllick)="closeDialog()">Cancel</button>
             </div>
           
           </form>

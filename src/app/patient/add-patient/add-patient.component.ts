@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { VerifyOtpComponent } from 'src/app/popups/verify-otp/verify-otp.component';
 import { APIService } from 'src/app/services/api-service';
@@ -15,7 +15,7 @@ export class AddPatientComponent implements OnInit {
   registerForm: FormGroup
   confirmMessage = '';
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiservice:APIService, public _dialog: MatDialog) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiservice:APIService, @Inject(MAT_DIALOG_DATA) private data1: any,public _dialog: MatDialog, public dialogRef: MatDialogRef<VerifyOtpComponent>) { 
 
     this.registerForm = this.formBuilder.group({
       email:new FormControl('',[ Validators.required]),
@@ -26,7 +26,9 @@ export class AddPatientComponent implements OnInit {
     
     })
   }
-
+  get data() {   
+  
+    return this.registerForm.controls; }
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {
       let passwordInput = group.controls[passwordKey],
@@ -40,12 +42,13 @@ export class AddPatientComponent implements OnInit {
     }
   }
 
-  get data() {   
-    return this.registerForm.controls; }
+ 
   ngOnInit(): void {
   }
 
-
+  closeDialog(){
+    this.dialogRef.close();
+  }
  
   registerSubmit(){
 

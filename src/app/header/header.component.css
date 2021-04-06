@@ -38,6 +38,15 @@ background-color: #400040;
 border: 1px solid silver;
 
 }
+ul{
+  padding : 2px 26px 2px 26px;
+}
+ul > li > a{
+  color: blue;
+}
+ul > li > a:hover{
+  color: orange;
+}
 
 .text { 
   width: 5px;
