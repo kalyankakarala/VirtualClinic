@@ -82,40 +82,22 @@ onSubmit() {
     );  
      
   }
-  this.getOtp();
-
-  //this.reloadPage();
-    
+  //this.getOtp(); 
 
 }
 
-reloadPage(): void {
-  this.router.navigate(['consultation/add']);
-  window.location.reload();
-}
 
 getOtp() {
-  this.apiService.getOTP().subscribe(
-    data => {
-     this.otpData= data;
-     const dialogRef = this._dialog.open(VerifyOtpComponent, {
-      width: '500px',
-      disableClose: false,
-      autoFocus: true,
-      data: this.otpData || ''
-    });
-    dialogRef.afterClosed().subscribe((result: any) => {
-      this.submitted = true;
-      this.router.navigate(['consultation/add']);
-        //this.reloadPage();
+  const dialogRef = this._dialog.open(VerifyOtpComponent, {
+    width: '500px',
+    disableClose: false,
+    autoFocus: true
+  });
+  dialogRef.afterClosed().subscribe((result: any) => {
+    this.submitted = true;
+    this.router.navigate(['login']);
 
-    });
-    
-    },
-    err => {
-      this.errorMessage = err.error.message;
-    }
-  );
+  });
     
 
     

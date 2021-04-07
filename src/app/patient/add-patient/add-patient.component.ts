@@ -14,8 +14,9 @@ import { APIService } from 'src/app/services/api-service';
 export class AddPatientComponent implements OnInit {
   registerForm: FormGroup
   confirmMessage = '';
+  errorMessage = '';
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiservice:APIService, @Inject(MAT_DIALOG_DATA) private data1: any,public _dialog: MatDialog, public dialogRef: MatDialogRef<VerifyOtpComponent>) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: APIService, @Inject(MAT_DIALOG_DATA) private data1: any,public _dialog: MatDialog, public dialogRef: MatDialogRef<VerifyOtpComponent>) { 
 
     this.registerForm = this.formBuilder.group({
       email:new FormControl('',[ Validators.required]),
@@ -26,9 +27,11 @@ export class AddPatientComponent implements OnInit {
     
     })
   }
-  get data() {   
-  
-    return this.registerForm.controls; }
+  get data() 
+  {   
+    return this.registerForm.controls; 
+  }
+
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {
       let passwordInput = group.controls[passwordKey],
@@ -54,30 +57,48 @@ export class AddPatientComponent implements OnInit {
 
     if(this.registerForm.invalid){
       return
+    } else{
+    let data = this.registerForm.value;
+    let obj = {
+      "email": data.email || '',
+      "password": data.password || '',
+      "address": "string",
+      "country": "null",
+      "dateOfBirth": "null",
+      "firstName": "null",
+      "gender": "null",
+      "lastName": "null",
+      "mobile": "null",
+      "reason": "null",
+      "state": "null"
     }
-let data = this.registerForm.value;
-let obj = {
-  "email": data.email || '',
-  "password": data.password || '',
-  "confirmpassword":data.confirmpassword
-}
 
-  const dialogRef = this._dialog.open(VerifyOtpComponent, {
-    width: '500px',
-    disableClose: false,
-    autoFocus: true,
-    data: obj || ''
-  });
-  dialogRef.afterClosed().subscribe((result: any) => {
-    this.submitted = true;
-    this.router.navigate(['consultation/add']);
-      //this.reloadPage();
+    this.apiService.signup(obj).subscribe(
+      data => {
+        console.log(data);
+        //this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+      }
+    );
+    //this.getOtp();
+    }
 
-  });
-  
-  
   }
+
+  getOtp() {
+    const dialogRef = this._dialog.open(VerifyOtpComponent, {
+      width: '500px',
+      disableClose: false,
+      autoFocus: true
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.submitted = true;
+      this.router.navigate(['login']);
   
+    });
+  }
   
 }
 
