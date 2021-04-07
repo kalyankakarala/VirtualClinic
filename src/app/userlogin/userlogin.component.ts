@@ -67,7 +67,7 @@ onSubmit() {
         this.role = this.tokenStorage.getUser().roles[0];
         //this.toastr.success("Login Successfull !");
         this.snackBar.open("succesfully loggedin", "close", {
-          duration: 2000,
+          duration: 500,
         });
         console.log(this.role);
         
@@ -76,7 +76,7 @@ onSubmit() {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
         this.snackBar.open("login Failed.....!", "close", {
-          duration: 2000,
+          duration: 500,
         });
       }
     );  
@@ -122,6 +122,13 @@ getOtp() {
   }
 
   openForgotDialog(){
+    if(this.loginForm.value.username === '' || this.loginForm.value.username== undefined){
+    
+      this.snackBar.open('please enter email', 'close', {
+        duration:1000
+      })
+      return
+    }
     const dialogRef = this._dialog.open(ResetPasswordComponent, {
       width: '800px',
       disableClose: false,
@@ -134,5 +141,7 @@ getOtp() {
     //     //this.reloadPage();
 
     // });
+
+    this.loginForm.reset()
   }
 }
