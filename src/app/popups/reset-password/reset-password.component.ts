@@ -58,21 +58,11 @@ export class ResetPasswordComponent implements OnInit {
       "confirmpassword": data.confirmpassword
     }
     console.log(obj);
-    const dialogRef = this._dialog.open(VerifyOtpComponent, {
-      width: '500px',
-      disableClose: false,
-      autoFocus: true,
-      data: '234523' || ''
-    });
-    dialogRef.afterClosed().subscribe((result: any) => {
-   
+
       this.submitted = true;
       this.router.navigate(['login']);
         //this.reloadPage();
-
-    });
-
-    
+    this.dialogRef.close()
   }
 
 }

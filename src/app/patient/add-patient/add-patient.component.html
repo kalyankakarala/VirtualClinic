@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center h-100">
+<!-- <div class="d-flex align-items-center h-100">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-5">
@@ -19,7 +19,7 @@
               <mat-error *ngIf="data.confirmpassword.errors?.required">confirmpassword is required</mat-error>
              
               <mat-error *ngIf="data.confirmpassword.errors?.notEquivalent">password should not match</mat-error>
-              <!-- <span *ngIf="confirmMessage">confirmpassword is required</span> -->
+              
 
             </mat-form-field>
             <div class="form-group mt-4 text-center">
@@ -31,4 +31,137 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<div id="content" class="main-content">
+  <form [formGroup]="registerForm" (submit)="registerSubmit()">
+      <mat-card> 
+      <div class="alignItems">
+   <h3 style="text-align: center;">Sign Up</h3>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+          <div class="w100p" fxFlex="30%">
+       <mat-label>First Name:</mat-label>
+          <mat-form-field appearance="outline">
+              <input type="text" matInput placeholder="FirstName" name="firstName" formControlName="firstName" [required]="true">
+              <mat-error *ngIf="data.firstName.errors?.required">First Name is required</mat-error>
+            </mat-form-field>
+            </div>
+            <div class="w100p" fxFlex="30%">
+                <mat-label>Last Name:</mat-label>
+            <mat-form-field appearance="outline">
+              <input type="text" matInput placeholder="LastName" name="lastName" formControlName="lastName" [required]="true">
+              <mat-error *ngIf="data.lastName.errors?.required">Last Name is required</mat-error>
+            </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+             
+              <div class="w100p" fxFlex="30%">
+           
+                  <mat-form-field style="width: 90%;"> 
+                      <input matInput [matDatepicker]="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth"
+                    placeholder="DOB"  [required]="true">
+                      <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                      <mat-datepicker #dateOfBirth></mat-datepicker>
+                      <mat-error *ngIf="data.dateOfBirth.errors?.required">Date Of Birth is required</mat-error>
+              
+                    </mat-form-field>
+                  </div>
+                  
+                    <div class="w100p" fxFlex="30%">
+                      <h6>Gender:</h6>
+                      <mat-radio-group class="example-radio-group" name="gender" formControlName="gender" (change)="selectGender($event)" [required]="true">
+                          <mat-radio-button class="example-radio-button" *ngFor="let genders of GenderDetails" [value]="genders">
+                            {{genders}}
+                          </mat-radio-button>
+<mat-error style="font-size:75%;" *ngIf="message">{{message}}</mat-error>
+                        </mat-radio-group>
+                </div>
+              
+              </div>
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+              <div class="w100p" fxFlex="30%">
+           <mat-label>Mobile:</mat-label>
+              <mat-form-field appearance="outline">
+                  <input type="text" matInput placeholder="Mobile" name="mobile" formControlName="mobile" [required]="true" type="number"
+                  pattern="[0-9]*"  onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                  <mat-error *ngIf="data.mobile.errors?.required">Mobile is required</mat-error>
+                  <mat-error *ngIf="data.mobile.touched && data.mobile.invalid && data.mobile.errors?.pattern">Email pattern should be like xyz@abc.com</mat-error>
+
+                  
+                </mat-form-field>
+                </div>
+                <div class="w100p" fxFlex="30%">
+                    <mat-label>Email:</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input type="text" matInput placeholder="Email" name="email" formControlName="email" [required]="true"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                      <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error>
+                      <mat-error *ngIf="data.email.errors?.pattern">Email pattern should be like xyz@abc.com</mat-error>
+                    </mat-form-field>
+            
+                </div>
+              </div>
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                <div class="w100p" fxFlex="30%">
+             <mat-label>State:</mat-label>
+                <mat-form-field appearance="outline">
+                    <input type="text" matInput placeholder="State" name="state" formControlName="state" [required]="true">
+                    <mat-error *ngIf="data.state.errors?.required">state is required</mat-error>
+                  </mat-form-field>
+                  </div>
+                  <div class="w100p" fxFlex="30%">
+                      <mat-label>Country:</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input type="text" matInput placeholder="Country" name="country" formControlName="country" [required]="true">
+                    <mat-error *ngIf="data.country.errors?.required">country is required</mat-error>
+                  </mat-form-field>
+                  </div>
+                </div>
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+             
+                  <div class="w100p" fxFlex="60%">
+               <mat-label>Address:</mat-label>
+                      <mat-form-field appearance="outline">
+                          <textarea matInput rows="2" cols="40"
+                             placeholder="Address" 
+                           name="address" formControlName="address" [required]="true"
+                           >
+                          </textarea>
+                          <mat-error *ngIf="data.address.errors?.required">Address is required</mat-error>
+                        </mat-form-field> 
+                  
+                  </div>
+          </div>
+
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+             
+            <div class="w100p" fxFlex="60%">
+         <mat-label>Medical History:</mat-label>
+                <mat-form-field appearance="outline">
+                    <textarea matInput rows="10" cols="40"
+                       placeholder="Mention Medical History" 
+                     name="reason" formControlName="reason"
+                     >
+                    </textarea>
+                    <mat-hint align="end">Mention Medical History</mat-hint>
+                    <mat-error *ngIf="data.reason.errors?.required">Medical History is required</mat-error>
+                  </mat-form-field> 
+            
+            </div>
+    </div>
+  
+        
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+              <div class="w100p" fxFlex="60%" fxLayoutAlign="center center">
+                  <button mat-raised-button  color="primary">submit</button>
+            &nbsp;
+            <button mat-raised-button color="primary" (click)="resetData()" >cancel</button>
+                  </div>
+             
+      </div>
+      </div>
+    
+      </mat-card>
+     
+  </form>
+  </div>
