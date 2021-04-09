@@ -1,1 +1,100 @@
-<p>edit-consultation works!</p>
+<div id="content" class="main-content">
+    <form [formGroup]="EditConsultationForm" (submit)="EditConsultDataSubmit($event)">
+        <mat-card> 
+        <div class="alignItems">
+    
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+        <mat-label><strong>Case Summary:</strong></mat-label> 
+        <div class="w100p" fxFlex="50%">
+               
+                 
+     <ul>
+         <li style="text-decoration: underline;">{{title}}</li>
+         <li>{{description}}</li>
+
+     </ul>
+            </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                <mat-label><strong>Case Type:</strong>
+                </mat-label>
+                <div class="w100p" fxFlex="50%">
+       
+                   
+                        
+                    <ul>
+     <li>{{caseType}}</li> </ul>
+                </div>
+                </div>
+        
+         <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+            <mat-label><strong>Case Comments:</strong>
+            </mat-label>
+            <div class="w100p" fxFlex="50%">
+      
+               
+            <mat-form-field appearance="outline">
+                <input type="text" matInput placeholder="comments" name="comments" formControlName="caseComments">
+                <mat-error *ngIf="consultdata.caseComments.errors?.required">Comments is required</mat-error>
+              </mat-form-field>
+              </div>
+             
+            </div> 
+            <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                <div class="w100p" fxFlex="50%">
+                    <mat-label>Description:</mat-label>
+                    <mat-form-field appearance="outline">
+                        <textarea matInput 
+                           placeholder="Description" 
+                         name="description" formControlName="description"
+                         >
+                        </textarea>
+                        <mat-error *ngIf="consultdata.description.errors?.required">Description is required</mat-error>
+                      </mat-form-field> 
+                  </div>
+                
+                </div> -->
+               <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center"> 
+                <mat-label><strong>Confirm Actions:</strong>
+                </mat-label>    
+                <div class="w100p" fxFlex="50%">
+                     
+                       
+                            <mat-radio-group class="example-radio-group" name="actions" formControlName="actions" (change)="selectAction($event)">
+                                <mat-radio-button class="example-radio-button" *ngFor="let actions of confrimActions" [value]="actions">
+                                  {{actions}}
+                                </mat-radio-button>
+ <!-- <mat-error style="font-size:75%;" *ngIf="message">{{message}}</mat-error> -->
+                              </mat-radio-group>
+
+                      </div>    
+                    
+                    </div>
+                 
+                            <div *ngIf="isAccept" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center"> 
+                                 
+                                <div class="w100p" fxFlex="39%">
+                                     
+                                       
+                                            <mat-radio-group class="example-radio-group" name="confirmactions" formControlName="confirmactions" (change)="selectCase($event)">
+                                                <mat-radio-button class="example-radio-button" *ngFor="let actions of patientActions" [value]="actions">
+                                                  {{actions}}
+                                                </mat-radio-button>
+                 <!-- <mat-error style="font-size:75%;" *ngIf="message">{{message}}</mat-error> -->
+                                              </mat-radio-group>
+                
+                                      </div>    
+                                    
+                                    </div>
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                        <div class="w100p" fxFlex="60%" fxLayoutAlign="center center">
+                            <button mat-raised-button type="submit" color="primary">submit</button>
+                      &nbsp;
+                      <button mat-raised-button color="primary" (click)="cancelData()" >cancel</button>
+                            </div>
+                       
+                </div>
+            </div>
+            </mat-card>
+            </form>
+            </div>
