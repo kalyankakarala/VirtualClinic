@@ -13,21 +13,34 @@
     
         <mat-toolbar>
         <span class="fill-remaining-space">
-        <i class="fa fa-user" style="color: silver;" aria-hidden="true" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (click)="menuTrigger.openMenu()"></i>
+          <i class="fa fa-user" style="color: silver;" aria-hidden="true" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (click)="menuTrigger.openMenu()"></i>
 
-        <mat-menu #menu="matMenu" [overlapTrigger]="false" (mouseleave)="menuTrigger.closeMenu()">
-          <span >
-            <ul>
-              <li>  <a  mat-list-item   routerLink="/patient/add"  >Sign Up</a></li>
-               <hr>
-              <li ><a routerLink="/login"  >Login</a></li>
-            </ul>
-          </span>
-          </mat-menu>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false" (mouseleave)="menuTrigger.closeMenu()">
+            <ng-template [ngIf]="isLoggedIn" [ngIfElse]="landing">
+              <span>
+                <ul>
+                  <li *ngIf="isPatient"><a routerLink="/patient/edit">Edit Profile</a></li>
+                  <li><a routerLink="/login" (click)="logout()">Logout</a></li>
+                </ul>
+              </span>
+              
+            </ng-template>
+            <ng-template #landing>
+              <span >
+                <ul>
+                  <li><a mat-list-item  routerLink="/patient/add">Sign Up</a></li>
+                    <hr>
+                  <li><a routerLink="/login">Login</a></li>
+                </ul>
+              </span>
+            </ng-template>
+          
+            </mat-menu>
+            <!--<i class="fa fa-bell" *ngIf="isLoggedIn" style="padding-left: 10%;" ></i>-->
           </span>
  
       </mat-toolbar>
-      <i class="fa fa-bell" *ngIf="isLoggedIn" style="padding-left: 10%;" ></i>
+      
 
     </div>
   </div>
@@ -39,17 +52,17 @@
 
 <mat-sidenav #sidenav style="background-color: #400040; border: 1px solid silver;" #start class="app-sidebar side-nav-style" mode="side" >
   <mat-nav-list >
-    <a class="nav-link" routerLink="/consultation/add" (click)="sidenav.toggle()">Consultation</a>
-    <a 
-    mat-list-item  
-    routerLink="/patient" (click)="sidenav.toggle()"
-   >Patient Dashboard</a>
-    <a 
-    mat-list-item  
-    routerLink="patient/edit" (click)="sidenav.toggle()"
-  >Patient Register</a>
-    
-</mat-nav-list>
+    <ng-template [ngIf]="isPatient" [ngIfElse]="doctorblock">
+      <a class="nav-link" routerLink="/consultation" (click)="sidenav.toggle()">Dashboard</a>
+      <a class="nav-link" routerLink="/calender" (click)="sidenav.toggle()">Calender</a>
+      <a class="nav-link" routerLink="/calender" (click)="sidenav.toggle()">Contact Us</a>
+    </ng-template>
+    <ng-template #doctorblock>
+      <a class="nav-link" routerLink="/consultation" (click)="sidenav.toggle()">Dashboard</a>
+      <a class="nav-link" routerLink="/patient" (click)="sidenav.toggle()">Patients</a>
+      <a class="nav-link" routerLink="/calender" (click)="sidenav.toggle()">Calender</a>
+    </ng-template>    
+  </mat-nav-list>
 </mat-sidenav>
 <mat-sidenav-content>
 <div style="margin-top: 100px;" > 

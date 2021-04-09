@@ -18,6 +18,8 @@ const UPDATE_CONSULT  = "http://localhost:8080/api/consultation/update";
 
 const GET_CONSULT  = "http://localhost:8080/api/consultation/findById/";
 
+const GET_CONSULT_BY_MAIL  = "http://localhost:8080/api/consultation/findByPatientEmail/";
+
 const GET_ALL_CONSULT  = "http://localhost:8080/api/consultation/findAll";
 
 const UPDATE_PATIENT  = "http://localhost:8080/api/patient/update";
@@ -61,7 +63,11 @@ export class APIService {
   }
 
   getConsultation(cID:any):Observable<any> {
-    return this.http.get(GET_CONSULT +"{"+cID+"}" , httpOptions);
+    return this.http.get(GET_CONSULT +"/"+cID , httpOptions);
+  }
+
+  getConsultationByMail(mail:any):Observable<any> {
+    return this.http.get(GET_CONSULT +"/"+mail , httpOptions);
   }
 
   getAllConsultations():Observable<any> {
@@ -77,7 +83,7 @@ export class APIService {
   }
 
   getPatient(pID:any):Observable<any> {
-    return this.http.get(GET_PATIENT +"{"+pID+"}" , httpOptions);
+    return this.http.get(GET_PATIENT +"/"+pID , httpOptions);
   }
 
   getAllPatients():Observable<any> {

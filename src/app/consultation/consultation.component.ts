@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PeriodicElement } from '../patient/patient.component';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-consultation',
@@ -22,8 +22,18 @@ export class ConsultationComponent implements OnInit {
  columnsToDisplay = ['patientId', 'patientName', 'caseSummary', 'requestDate', 'Actions' ];
  errorMessage ='';
  patienData: any[]=[];
-  constructor(){
+ isPatient: boolean=false;
+ userMail: string="";
+  constructor(private tokenStorage: TokenStorageService){
     this.patienData = this.ELEMENT_DATA
   }
-  ngOnInit(){}
+  ngOnInit(): void{
+    this.tokenStorage.isPatient.subscribe((patient:boolean) =>
+    {
+      this.isPatient = patient;
+    });
+    if (this.tokenStorage.getToken()) {
+      this.userMail = this.tokenStorage.getUser().email;
+    }
+  }
 }

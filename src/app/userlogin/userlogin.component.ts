@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { VerifyOtpComponent } from '../popups/verify-otp/verify-otp.component';
 import { APIService } from '../services/api-service';
 import { TokenStorageService } from '../services/token-storage.service';
-import { ToastrService } from 'ngx-toastr';
 import { ResetPasswordComponent } from '../popups/reset-password/reset-password.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -24,7 +23,7 @@ export class UserloginComponent implements OnInit {
   dialogRef: MatDialogRef<VerifyOtpComponent> | undefined;
   otpData: any;
   
-  constructor( private formBuilder: FormBuilder, private router: Router, public snackBar: MatSnackBar,public _dialog: MatDialog, private apiService: APIService, private tokenStorage: TokenStorageService, private toastr: ToastrService) { 
+  constructor( private formBuilder: FormBuilder, private router: Router, public snackBar: MatSnackBar,public _dialog: MatDialog, private apiService: APIService, private tokenStorage: TokenStorageService) { 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -37,7 +36,7 @@ export class UserloginComponent implements OnInit {
       this.isLoggedIn = true;
       this.role = this.tokenStorage.getUser().roles[0];
     }
-}
+  }
 
 get data() { return this.loginForm.controls}
 
@@ -61,15 +60,16 @@ onSubmit() {
         console.log(tk)
         this.tokenStorage.saveToken(tk);
         this.tokenStorage.saveUser(data);
-
+        this.tokenStorage.login();
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser().roles[0];
-        //this.toastr.success("Login Successfull !");
+        this.tokenStorage.setUserRole(this.role);
         this.snackBar.open("succesfully loggedin", "close", {
           duration: 500,
         });
         console.log(this.role);
+        this.router.navigate(['consultation']);
         
       },
       err => {

@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Router } from '@angular/router';
 import { ResetPasswordComponent } from 'src/app/popups/reset-password/reset-password.component';
 import { VerifyOtpComponent } from 'src/app/popups/verify-otp/verify-otp.component';
-import { APIService } from 'src/app/services/api-service';
+import { DataService } from '../../services/data.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class AddPatientComponent implements OnInit {
   submitted = false;
   message='';
   GenderDetails =["male", "female"]
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: APIService, @Inject(MAT_DIALOG_DATA) private data1: any,public _dialog: MatDialog, public dialogRef: MatDialogRef<VerifyOtpComponent>) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private dataService: DataService, @Inject(MAT_DIALOG_DATA) private data1: any,public _dialog: MatDialog, public dialogRef: MatDialogRef<VerifyOtpComponent>) { 
 
     this.registerForm = this.formBuilder.group({
       firstName: new FormControl('',[ Validators.required]),
@@ -67,32 +67,25 @@ export class AddPatientComponent implements OnInit {
     let obj = {
       "email": data.email || '',
       "password": data.password || '',
-      "address": "string",
-      "country": "null",
-      "dateOfBirth": "null",
-      "firstName": "null",
-      "gender": "null",
-      "lastName": "null",
-      "mobile": "null",
-      "reason": "null",
-      "state": "null"
+      "address": data.address,
+      "country": data.country,
+      "dateOfBirth": data.dateOfBirth,
+      "firstName": data.lastName,
+      "gender": data.gender,
+      "lastName": data.lastName,
+      "mobile": data.mobile,
+      "reason": data.reason,
+      "state": data.state
     }
 
-    this.apiService.signup(obj).subscribe(
-      data => {
-        console.log(data);
-        //this.reloadPage();
-      },
-      err => {
-        this.errorMessage = err.error.message;
-      }
-    );
-    this.getOtp();
+    this.dataService.setSingupObj(obj, false);
+    
+    this.setPassword(obj);
     }
 
   }
 
-  getOtp() {
+  setPassword(obj:any) {
     const dialogRef = this._dialog.open(ResetPasswordComponent, {
       width: '500px',
       disableClose: false,
@@ -100,7 +93,7 @@ export class AddPatientComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       this.submitted = true;
-      this.router.navigate(['login']);
+      //this.router.navigate(['login']);
   
     });
   }

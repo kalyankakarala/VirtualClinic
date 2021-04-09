@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { VerifyOtpComponent } from '../verify-otp/verify-otp.component';
+import { DataService } from '../../services/data.service';
+import { APIService } from '../../services/api-service';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,17 +12,20 @@ import { VerifyOtpComponent } from '../verify-otp/verify-otp.component';
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-  resetForm: FormGroup
+  resetForm: FormGroup;
+  errorMessage = "";
+  payload:any;
+  isReset=true;
   submitted=false;
-  constructor(private formBuilder: FormBuilder,  private router: Router,  public dialogRef: MatDialogRef<ResetPasswordComponent>,public _dialog: MatDialog,) { 
+  constructor(private formBuilder: FormBuilder,  private router: Router,  public dialogRef: MatDialogRef<ResetPasswordComponent>,public _dialog: MatDialog, private dataService: DataService, private apiService: APIService) { 
     dialogRef.disableClose = true;
     this.resetForm= this.formBuilder.group({
   
       password: new FormControl('',[ Validators.required]),
       confirmpassword: new FormControl('',[ Validators.required]),
     },
-    {validator: this.checkIfMatchingPasswords('password', 'confirmpassword')
-    
+    {
+      validator: this.checkIfMatchingPasswords('password', 'confirmpassword')    
     })
   }
   get data(){
@@ -41,6 +46,8 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.payload = this.dataService.getSignupObj();
+    this.isReset = this.dataService.getPasswordTitle();
   }
   closeDialog(){
     this.dialogRef.close();
@@ -48,21 +55,25 @@ export class ResetPasswordComponent implements OnInit {
   onSubmit(){   
     if(this.resetForm.invalid){
       return 
-    }
-
-
-    let data = this.resetForm.value
-    let obj = {
-    
-      "password": data.password,
-      "confirmpassword": data.confirmpassword
-    }
-    console.log(obj);
-
+    } else{
+      let data = this.resetForm.value;
+      this.payload.password = data.password;
+      console.log(this.payload);
       this.submitted = true;
-      this.router.navigate(['login']);
-        //this.reloadPage();
-    this.dialogRef.close()
+      
+      this.dialogRef.close();
+      this.apiService.signup(this.payload).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['login']);
+        },
+        err => {
+          this.errorMessage = err.error.message;
+        }
+      );
+
+    }
+      
   }
 
 }
