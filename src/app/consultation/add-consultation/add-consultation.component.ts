@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { APIService } from '../../services/api-service';
 import { TokenStorageService } from '../../services/token-storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-consultation',
@@ -17,7 +18,7 @@ export class AddConsultationComponent implements OnInit {
   consultationForm: FormGroup;
   consultCase: string[] = ["EMERGENCY", "NORMAL"];
   message= "";
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: APIService, private tokenStorage: TokenStorageService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: APIService, private tokenStorage: TokenStorageService,  public snackBar: MatSnackBar) {
 
     this.consultationForm = this.formBuilder.group({
   title: new FormControl('', [Validators.required]),
@@ -61,7 +62,10 @@ export class AddConsultationComponent implements OnInit {
   this.apiService.requestConsultation(obj).subscribe(
     data => {
       console.log(data);
-      //this.reloadPage();
+      this.snackBar.open("Consultation Requested Succesfully", "close", {
+        duration: 500,
+      });
+      this.router.navigate(['consultation']);
     },
     err => {
       this.errorMessage = err.error.message;

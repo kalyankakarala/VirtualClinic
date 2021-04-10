@@ -12,12 +12,13 @@ export class ConsultationComponent implements OnInit {
   tabs=['Requested','Active','Complete']
   
  dataSource: any[]=[]
- columnsToDisplay = ['patientName', 'caseTitle', 'caseType', 'status' ];
+ columnsToDisplay = ['patientName', 'caseTitle', 'caseType', 'status', 'action' ];
  errorMessage ='';
  patienData: any=[];
+ doctorData: any=[];
  isPatient: boolean=false;
  userMail: string="";
-  constructor(private tokenStorage: TokenStorageService, private apiService: APIService,){
+  constructor(private tokenStorage: TokenStorageService, private apiService: APIService){
   
   }
   ngOnInit(): void{
@@ -34,5 +35,15 @@ export class ConsultationComponent implements OnInit {
         this.patienData = data;
       }
     );
+    this.apiService.getAllConsultations().subscribe(
+      docData =>{
+        console.log(docData);
+        this.doctorData = docData;
+      }
+    );
+  }
+
+  fetchConsultation(cId:string){
+    console.log(cId);
   }
 }

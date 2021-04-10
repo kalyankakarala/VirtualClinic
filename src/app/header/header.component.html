@@ -55,7 +55,7 @@
     <ng-template [ngIf]="isPatient" [ngIfElse]="doctorblock">
       <a class="nav-link" routerLink="/consultation" (click)="sidenav.toggle()">Dashboard</a>
       <a class="nav-link" routerLink="/calender" (click)="sidenav.toggle()">Calender</a>
-      <a class="nav-link" routerLink="/calender" (click)="sidenav.toggle()">Contact Us</a>
+      <a class="nav-link" routerLink="/contact" (click)="sidenav.toggle()">Contact Us</a>
     </ng-template>
     <ng-template #doctorblock>
       <a class="nav-link" routerLink="/consultation" (click)="sidenav.toggle()">Dashboard</a>

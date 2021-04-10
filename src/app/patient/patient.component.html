@@ -3,55 +3,43 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
             <div class="w100p" fxFlex="80%">
               <table mat-table [dataSource]="patienData" class="mat-elevation-z8">
-                <ng-container matColumnDef="patientId">
-                  <th mat-header-cell *matHeaderCellDef> <strong>patientId</strong> </th>
-                  <td mat-cell *matCellDef="let element"> {{element.patientId}} </td>
-                </ng-container>
-              
-            
-                <ng-container matColumnDef="firstName">
-                  <th mat-header-cell *matHeaderCellDef> <strong>firstName</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-                </ng-container>
-              
-          
-                <ng-container matColumnDef="lastName">
-                  <th mat-header-cell *matHeaderCellDef> <strong>lastName</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> <strong>Name</strong> </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.firstName}} {{patienData.lastName}}</td>
                 </ng-container>
               
                 <ng-container matColumnDef="dateOfBirth">
-                  <th mat-header-cell *matHeaderCellDef> <strong>dateOfBirth</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <strong>DOB</strong>  </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.dateOfBirth}} </td>
                 </ng-container>
                 <ng-container matColumnDef="gender">
-                  <th mat-header-cell *matHeaderCellDef> <strong>gender</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <strong>Gender</strong>  </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.gender}} </td>
                 </ng-container>
                 <ng-container matColumnDef="email">
-                  <th mat-header-cell *matHeaderCellDef> <strong>email</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <strong>Email</strong>  </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.email}} </td>
                 </ng-container>
                 <ng-container matColumnDef="mobile">
-                  <th mat-header-cell *matHeaderCellDef> <strong>mobile</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <strong>Mobile</strong>  </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.mobile}} </td>
                 </ng-container>
                 <ng-container matColumnDef="country">
-                  <th mat-header-cell *matHeaderCellDef> <strong>country</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <strong>Country</strong>  </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.country}} </td>
                 </ng-container>
              
                 <ng-container matColumnDef="state">
-                  <th mat-header-cell *matHeaderCellDef> <strong>state</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <strong>State</strong>  </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.state}} </td>
                 </ng-container>
                 <ng-container matColumnDef="address">
-                  <th mat-header-cell *matHeaderCellDef> <strong>address</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <strong>Address</strong>  </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.address}} </td>
                 </ng-container>
                 <ng-container matColumnDef="reason">
-                  <th mat-header-cell *matHeaderCellDef> <strong>reason</strong>  </th>
-                  <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+                  <th mat-header-cell *matHeaderCellDef> <strong>Reason</strong>  </th>
+                  <td mat-cell *matCellDef="let patienData"> {{patienData.reason}} </td>
                 </ng-container> 
                 <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
                 <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>

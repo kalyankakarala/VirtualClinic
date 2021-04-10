@@ -9,10 +9,14 @@ import { AddPatientComponent } from './patient/add-patient/add-patient.component
 import { EditPatientComponent } from './patient/edit-patient/edit-patient.component';
 import { PatientComponent } from './patient/patient.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   {path: '', component: MainpageComponent},
   {path: 'login', component: UserloginComponent},
+  {path: 'contact', component: ContactUsComponent},
+  {path: 'calendar', component: CalendarComponent},
   {
     path: 'patient', 
     children: [
