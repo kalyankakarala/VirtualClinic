@@ -63,11 +63,11 @@ export class APIService {
   }
 
   getConsultation(cID:any):Observable<any> {
-    return this.http.get(GET_CONSULT +"/"+cID , httpOptions);
+    return this.http.get(GET_CONSULT +cID , httpOptions);
   }
 
   getConsultationByMail(mail:any):Observable<any> {
-    return this.http.get(GET_CONSULT +"/"+mail , httpOptions);
+    return this.http.get(GET_CONSULT_BY_MAIL +mail , httpOptions);
   }
 
   getAllConsultations():Observable<any> {
