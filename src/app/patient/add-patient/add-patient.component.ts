@@ -70,7 +70,7 @@ export class AddPatientComponent implements OnInit {
       "address": data.address,
       "country": data.country,
       "dateOfBirth": data.dateOfBirth,
-      "firstName": data.lastName,
+      "firstName": data.firstName,
       "gender": data.gender,
       "lastName": data.lastName,
       "mobile": data.mobile,

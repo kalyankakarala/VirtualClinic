@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
+import { APIService } from '../../services/api-service';
 
 @Component({
   selector: 'app-edit-patient',
@@ -9,11 +11,13 @@ import { Router } from '@angular/router';
 })
 export class EditPatientComponent implements OnInit {
 
-  registerForm: FormGroup
-  message=""
+  registerForm: FormGroup;
+  message="";
+  userMail: string="";
+  patienData: any;
   selectedStatus: Array<string>;
-  GenderDetails =["male", "female"]
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  GenderDetails =[{key:"male", checked: false}, {key:"female", checked: false}];
+  constructor(private formBuilder: FormBuilder, private router: Router, private tokenStorage: TokenStorageService, private apiService: APIService) { 
 this.selectedStatus=[]
     this.registerForm = this.formBuilder.group({
       firstName: new FormControl('',[ Validators.required]),
@@ -34,6 +38,19 @@ this.selectedStatus=[]
   get data() {   
     return this.registerForm.controls; }
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.userMail = this.tokenStorage.getUser().email;
+    }
+    this.apiService.getPatientByMail(this.userMail).subscribe(
+      data =>{
+        console.log(data);
+        this.patienData = data;
+      }
+    );
+    var g = this.patienData.gender;
+    console.log(g);
+    console.log(this.GenderDetails[g]);
+  
   }
 
   selectGender(e: any){
@@ -72,7 +89,7 @@ console.log(obj);
 
   resetData(){
     this.registerForm.reset()
-    this.message="please select gender"
+    //this.message="please select gender"
   }
 }
 

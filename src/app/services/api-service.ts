@@ -28,6 +28,8 @@ const GET_PATIENT  = "http://localhost:8080/api/patient/findById/";
 
 const GET_ALL_PATIENT  = "http://localhost:8080/api/patient/findAll";
 
+const GET_PATIENT_BY_MAIL  = "http://localhost:8080/api/patient/findByEmail/";
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -88,6 +90,10 @@ export class APIService {
 
   getAllPatients():Observable<any> {
     return this.http.get(GET_ALL_PATIENT , httpOptions);
+  }
+
+  getPatientByMail(mail:any):Observable<any> {
+    return this.http.get(GET_PATIENT_BY_MAIL +mail , httpOptions);
   }
 
 
