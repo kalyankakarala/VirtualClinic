@@ -4,100 +4,105 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
             <div class="w100p" fxFlex="80%">
               <ng-template [ngIf]="isPatient" [ngIfElse]="doctorblock">
-                <ng-template [ngIf]="patienData?.length > 0" [ngIfElse]="recordsblock">
+                
                   <mat-tab-group mat-align-tabs="center" color="accent">
-                    <mat-tab label="Requested" class="active" font-color="accent">
-                          
-                      <table mat-table [dataSource]="patienData" class="mat-elevation-z8">
-                        <ng-container matColumnDef="patientName">
-                          <th mat-header-cell *matHeaderCellDef> <strong>Patient</strong> </th>
-                          <td mat-cell *matCellDef="let patienData"> {{patienData.patient.firstName}} {{patienData.patient.lastName}}</td>
-                        </ng-container>
-                      
+                    <mat-tab label="Active" class="active" font-color="accent">
+                      <ng-template [ngIf]="patientActive?.length > 0" [ngIfElse]="recordsblock">
+                      <table mat-table [dataSource]="patientActive" class="mat-elevation-z8">
+                                              
                         <ng-container matColumnDef="caseTitle">
                           <th mat-header-cell *matHeaderCellDef> <strong>Details</strong>  </th>
-                          <td mat-cell *matCellDef="let patienData"> {{patienData.title}} </td>
+                          <td mat-cell *matCellDef="let patientActive"> {{patientActive.title}} </td>
                         </ng-container>
                       
                      
                         <ng-container matColumnDef="caseType">
                           <th mat-header-cell *matHeaderCellDef> <strong>Type</strong>  </th>
-                          <td mat-cell *matCellDef="let patienData"> {{patienData.caseType}} </td>
+                          <td mat-cell *matCellDef="let patientActive"> {{patientActive.caseType}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="requestDate">
+                          <th mat-header-cell *matHeaderCellDef> <strong>Requested Date</strong> </th>
+                          <td mat-cell *matCellDef="let patientActive"> {{patientActive.requestedDatetime}}</td>
                         </ng-container>
                    
                         <ng-container matColumnDef="status">
                           <th mat-header-cell *matHeaderCellDef> <strong>Status</strong>  </th>
-                          <td mat-cell *matCellDef="let patienData"> {{patienData.action.consultationStatus}} </td>
+                          <td mat-cell *matCellDef="let patientActive"> {{patientActive.action.consultationStatus}} </td>
                         </ng-container>
                         
                           <ng-container matColumnDef="action">
                             <th mat-header-cell *matHeaderCellDef> <strong>Action</strong>  </th>
-                            <td mat-cell *matCellDef="let patienData"> 
+                            <td mat-cell *matCellDef="let patientActive"> 
                               <button mat-raised-button disabled
                                 style="margin-left: 20px">Update</button> </td>
                           </ng-container>
                         
                         
-                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-                        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+                        <tr mat-header-row *matHeaderRowDef="patientColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: patientColumns;"></tr>
                       </table>
+                    </ng-template>
+
+                      <ng-template #recordsblock>
+                        <div class="w100p" fxFlex="80%">
+                          <p style="margin-top: 15%;">
+                            No Active Consultations. Please request new consultation.
+                          </p>
+                          <a class="nav-link" routerLink="/consultation/add">Request Consultation</a>
+                        </div> 
+                      </ng-template>
                           
                   
                     </mat-tab>
-                    <mat-tab label="Active" class="active"></mat-tab>
+                    <mat-tab label="Reject" class="active"></mat-tab>
+                    <mat-tab label="Revisit" class="active"></mat-tab>
                     <mat-tab label="Completed" class="active"></mat-tab>
                   </mat-tab-group>
                 </ng-template>
-                <ng-template #recordsblock>
-                  <div class="w100p" fxFlex="80%" *ngIf="patienData?.length == 0">
-                    <p style="margin-top: 15%;">
-                      No Active Consultations. Please request new consultation.
-                    </p>
-                    <a class="nav-link" routerLink="/consultation/add">Request Consultation</a>
-                  </div> 
-                </ng-template>
+                
 
-</ng-template>
 <ng-template #doctorblock>
   <mat-tab-group mat-align-tabs="center" color="accent">
-    <mat-tab label="Requested" class="active" font-color="accent">     
-      <table mat-table [dataSource]="doctorData" class="mat-elevation-z8">
+    <mat-tab label="Active" class="active" font-color="accent">     
+      <table mat-table [dataSource]="doctorActive" class="mat-elevation-z8">
         <ng-container matColumnDef="patientName">
           <th mat-header-cell *matHeaderCellDef> <strong>Patient</strong> </th>
-          <td mat-cell *matCellDef="let doctorData"> {{doctorData.patient.firstName}} {{doctorData.patient.lastName}}</td>
+          <td mat-cell *matCellDef="let doctorActive"> {{doctorActive.patient.firstName}} {{doctorActive.patient.lastName}}</td>
         </ng-container>
       
         <ng-container matColumnDef="caseTitle">
           <th mat-header-cell *matHeaderCellDef> <strong>Details</strong>  </th>
-          <td mat-cell *matCellDef="let doctorData"> {{doctorData.title}} </td>
+          <td mat-cell *matCellDef="let doctorActive"> {{doctorActive.title}} </td>
         </ng-container>
       
      
         <ng-container matColumnDef="caseType">
           <th mat-header-cell *matHeaderCellDef> <strong>Type</strong>  </th>
-          <td mat-cell *matCellDef="let doctorData"> {{doctorData.caseType}} </td>
+          <td mat-cell *matCellDef="let doctorActive"> {{doctorActive.caseType}} </td>
         </ng-container>
    
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef> <strong>Status</strong>  </th>
-          <td mat-cell *matCellDef="let doctorData"> {{doctorData.action.consultationStatus}} </td>
+          <td mat-cell *matCellDef="let doctorActive"> {{doctorActive.action.consultationStatus}} </td>
         </ng-container>
         
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef> <strong>Action</strong>  </th>
-          <td mat-cell *matCellDef="let doctorData"> 
+          <td mat-cell *matCellDef="let doctorActive"> 
             <button mat-raised-button color="primary"
-              style="margin-left: 20px" (click)="fetchConsultation(doctorData.consultationId)">Confirm</button> </td>
+              style="margin-left: 20px" (click)="fetchConsultation(doctorActive.consultationId)">Confirm</button> </td>
         </ng-container>
         
         
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+        <tr mat-header-row *matHeaderRowDef="doctorColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: doctorColumns;"></tr>
       </table>
           
   
     </mat-tab>
-    <mat-tab label="Active" class="active"></mat-tab>
+    <mat-tab label="Reject" class="active"></mat-tab>
+    <mat-tab label="Revisit" class="active"></mat-tab>
     <mat-tab label="Completed" class="active"></mat-tab>
   </mat-tab-group>
 </ng-template>

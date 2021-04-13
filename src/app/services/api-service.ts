@@ -18,9 +18,9 @@ const UPDATE_CONSULT  = "http://localhost:8080/api/consultation/update";
 
 const GET_CONSULT  = "http://localhost:8080/api/consultation/findById/";
 
-const GET_CONSULT_BY_MAIL  = "http://localhost:8080/api/consultation/findByPatientEmail/";
+const GET_CONSULT_BY_MAIL  = "http://localhost:8080/api/consultation/findAllByPatientEmailGroupByStatus/";
 
-const GET_ALL_CONSULT  = "http://localhost:8080/api/consultation/findAll";
+const GET_ALL_CONSULT  = "http://localhost:8080/api/consultation/findAllGroupByStatus";
 
 const UPDATE_PATIENT  = "http://localhost:8080/api/patient/update";
 

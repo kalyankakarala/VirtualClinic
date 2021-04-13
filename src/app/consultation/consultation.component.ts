@@ -11,11 +11,17 @@ import { APIService } from '../services/api-service';
 export class ConsultationComponent implements OnInit {
   tabs=['Requested','Active','Complete']
   
- dataSource: any[]=[]
- columnsToDisplay = ['patientName', 'caseTitle', 'caseType', 'status', 'action' ];
+ patientColumns = ['caseTitle', 'caseType','requestDate', 'status', 'action' ];
+ doctorColumns = ['patientName', 'caseTitle', 'caseType','requestData', 'status', 'action' ];
  errorMessage ='';
- patienData: any=[];
- doctorData: any=[];
+ patientActive: any=[];
+ patientComplete: any=[];
+ patientRevist: any=[];
+ patientReject: any=[];
+ doctorActive: any=[];
+ doctorComplete: any=[];
+ doctorRevist: any=[];
+ doctorReject: any=[];
  isPatient: boolean=false;
  userMail: string="";
   constructor(private tokenStorage: TokenStorageService, private apiService: APIService){
@@ -30,15 +36,37 @@ export class ConsultationComponent implements OnInit {
       this.userMail = this.tokenStorage.getUser().email;
     }
     this.apiService.getConsultationByMail(this.userMail).subscribe(
-      data =>{
+      (data:any[]) =>{
+        data.forEach(el => {
+          if(el.status == "ACTIVE")
+          {
+            this.patientActive = el.consultationes;
+          } else if(el.status == "REJECT"){
+            this.patientReject = el.consultationes;
+          } else if(el.status == "REVISIT"){
+            this.patientRevist = el.consultationes;
+          } else if(el.status == "COMPLETED"){
+            this.patientComplete = el.consultationes;
+          }
+        });
         console.log(data);
-        this.patienData = data;
       }
     );
     this.apiService.getAllConsultations().subscribe(
-      docData =>{
+      (docData:any[]) =>{
+        docData.forEach(el => {
+          if(el.status == "ACTIVE")
+          {
+            this.doctorActive = el.consultationes;
+          } else if(el.status == "REJECT"){
+            this.doctorReject = el.consultationes;
+          } else if(el.status == "REVISIT"){
+            this.doctorRevist = el.consultationes;
+          } else if(el.status == "COMPLETED"){
+            this.doctorComplete = el.consultationes;
+          }
+        });
         console.log(docData);
-        this.doctorData = docData;
       }
     );
   }
