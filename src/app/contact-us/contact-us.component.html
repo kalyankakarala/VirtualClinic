@@ -1,1 +1,36 @@
-<p>contact-us works!</p>
+
+<div id="content" class="main-content">
+    <form [formGroup]="contactForm" (submit)="contactFormSubmit()">
+
+          <mat-card>
+            <div class="alignItems">
+            <h3 class="text-center">Contact Us</h3>
+         
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+                    <div class="w100p" fxFlex="50%">   
+                <mat-label>For any Query:</mat-label>
+                <mat-form-field appearance="outline">
+                    <textarea matInput
+                       placeholder="Comment" 
+                     name="Comment" formControlName="Comment" [required]="true" >
+                    </textarea>
+                    <mat-error *ngIf="data.Comment.errors?.required">comment is required</mat-error>
+                  </mat-form-field> 
+           </div>
+           </div>
+           <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center center">
+            <div class="w100p" fxFlex="50%">   
+              <div class="form-group mt-4 text-center">
+                <button mat-raised-button color="primary" type="submit">submit</button>&nbsp;  <button mat-raised-button color="primary" type="reset">Reset</button>
+              </div>
+              </div>
+              </div>
+            
+            </div>
+          </mat-card>
+          </form>
+        </div>
+ 
+
+
+
