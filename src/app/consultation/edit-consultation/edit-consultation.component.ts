@@ -23,6 +23,7 @@ export class EditConsultationComponent implements OnInit {
   patientActions: string[]=['PatientReportRequired', 'PaymentRequired']
   isAccept: boolean= false
   message= "";
+  consultationId: string="";
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: APIService, private tokenStorage: TokenStorageService) {
 
     this.EditConsultationForm = this.formBuilder.group({
@@ -39,7 +40,8 @@ export class EditConsultationComponent implements OnInit {
     return this.EditConsultationForm.controls; }
 
   ngOnInit(): void {
-  
+    this.consultationId =this.tokenStorage.getConsultationID();
+    console.log(this.consultationId)
   }
 
   selectAction(e: any){

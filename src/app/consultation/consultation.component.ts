@@ -12,7 +12,7 @@ export class ConsultationComponent implements OnInit {
   tabs=['Requested','Active','Complete']
   
  patientColumns = ['caseTitle', 'caseType','requestDate', 'status', 'action' ];
- doctorColumns = ['patientName', 'caseTitle', 'caseType','requestData', 'status', 'action' ];
+ doctorColumns = ['patientName', 'caseTitle', 'caseType','requestDate', 'status', 'action' ];
  errorMessage ='';
  patientActive: any=[];
  patientComplete: any=[];
@@ -24,7 +24,7 @@ export class ConsultationComponent implements OnInit {
  doctorReject: any=[];
  isPatient: boolean=false;
  userMail: string="";
-  constructor(private tokenStorage: TokenStorageService, private apiService: APIService){
+  constructor(private router: Router, private tokenStorage: TokenStorageService, private apiService: APIService){
   
   }
   ngOnInit(): void{
@@ -73,5 +73,7 @@ export class ConsultationComponent implements OnInit {
 
   fetchConsultation(cId:string){
     console.log(cId);
+    this.tokenStorage.setConsultation(cId);
+    this.router.navigate(['/consultation/edit/']);
   }
 }

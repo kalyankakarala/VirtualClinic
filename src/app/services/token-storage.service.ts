@@ -11,6 +11,9 @@ const USER_KEY = 'auth-user';
 export class TokenStorageService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private patient: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private consultationId: string='';
+
+  constructor(private router: Router) { }
 
   public get isLoggedIn() {
     return this.loggedIn.asObservable();
@@ -36,7 +39,13 @@ export class TokenStorageService {
     }
   }
 
-  constructor(private router: Router) { }
+  public setConsultation(c:string){
+    this.consultationId = c;
+  }
+
+  public getConsultationID() {
+    return this.consultationId;
+  }
 
   signOut(): void {
     window.sessionStorage.clear();

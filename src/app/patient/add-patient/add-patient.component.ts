@@ -86,6 +86,7 @@ export class AddPatientComponent implements OnInit {
   }
 
   setPassword(obj:any) {
+    console.log("Inside popup")
     const dialogRef = this._dialog.open(ResetPasswordComponent, {
       width: '500px',
       disableClose: false,

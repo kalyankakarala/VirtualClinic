@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: '', component: MainpageComponent},
   {path: 'login', component: UserloginComponent},
   {path: 'contact', component: ContactUsComponent},
-  {path: 'calendar', component: CalendarComponent},
+  {path: 'calender', component: CalendarComponent},
   {
     path: 'patient', 
     children: [

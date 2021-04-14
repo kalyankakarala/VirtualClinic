@@ -28,6 +28,18 @@ import { ResetPasswordComponent } from './popups/reset-password/reset-password.c
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { authInterceptorProviders } from './helper/auth.interceptor';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+])
 
 @NgModule({
   declarations: [
@@ -60,7 +72,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    FlexLayoutModule
+    FlexLayoutModule,
+    FullCalendarModule 
   ],
   providers: [authInterceptorProviders,
     {provide:MatDialogRef , useValue:{} },
