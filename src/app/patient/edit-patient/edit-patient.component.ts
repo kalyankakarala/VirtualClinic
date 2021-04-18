@@ -10,7 +10,7 @@ import { APIService } from '../../services/api-service';
   styleUrls: ['./edit-patient.component.css']
 })
 export class EditPatientComponent implements OnInit {
-
+  step = 0;
   registerForm: FormGroup;
   message="";
   userMail: string="";
@@ -90,6 +90,18 @@ console.log(obj);
   resetData(){
     this.registerForm.reset()
     //this.message="please select gender"
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }
 

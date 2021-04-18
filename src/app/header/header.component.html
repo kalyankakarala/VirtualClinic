@@ -1,14 +1,12 @@
 
 <mat-toolbar class="fixed-header">
   <div class="row">
-    <div class="col-sm-5">
-      
-        <i class="material-icons app-toolbar-menu" (click)="sidenav.toggle()">menu</i>
-   
-    </div>
-    <div class="col-sm-5">
-      <h4 style="line-height: 80px;">Dr. PV Naresh Kumar Virtual Clinic</h4>
-    </div>
+    <span class="col-sm-5">
+      <i class="material-icons app-toolbar-menu" (click)="sidenav.toggle()">menu</i>   
+    </span>
+    <span class="col-sm-5">
+      <h4 style="line-height: 60px; text-align:center;">Dr. PV Naresh Kumar Virtual Clinic</h4>
+    </span>
     <div class="col-sm-2">
     
         <mat-toolbar>
@@ -69,9 +67,9 @@
 
   <router-outlet style="overflow: auto;"></router-outlet>
   </div>
-  <div class="footer text-center">
+  <!--<div class="footer text-center">
     footer
-  </div>
+  </div>-->
 
 </mat-sidenav-content>
 

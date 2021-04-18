@@ -13,6 +13,7 @@ export class EditConsultationComponent implements OnInit {
 
  
   errorMessage = '';
+  cData: any= '';
   role: string = '';
   title="Minimal Invasive Valve Surgery"
   description="The valves help blood flow through the heart's 4 chambers and out to your body normally. The surgery is called “minimally invasive” because it uses a smaller incision than a traditional open repair. This may lead to easier and faster recovery from surgery."
@@ -41,6 +42,20 @@ export class EditConsultationComponent implements OnInit {
 
   ngOnInit(): void {
     this.consultationId =this.tokenStorage.getConsultationID();
+    console.log(this.consultationId);
+    this.apiService.getConsultation(this.consultationId).subscribe(
+      data => {
+        console.log(data);
+        
+        this.cData = data;
+        //this.router.navigate(['consultation']);
+        
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        
+      }
+    );
     console.log(this.consultationId)
   }
 
